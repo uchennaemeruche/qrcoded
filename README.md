@@ -40,3 +40,24 @@ npm run preview
 ```
 
 Checkout the [deployment documentation](https://v3.nuxtjs.org/guide/deploy/presets) for more information.
+
+
+TODO:
+-- Event
+    vCard
+    Email
+    SMS
+    Wi-Fi
+    Tweet/Twitter/Facebook/Youtube/Social Profiles
+    Phone Number/Call
+    URL
+    Location
+    Bitcoin
+    MP3
+    Video
+    Image Gallery
+    PDF
+    App Store/Playstore
+    Rating
+    Feedback
+
