@@ -1,5 +1,5 @@
 <template lang="">
-    <header class=" py-7 sticky top-0 bg-darkbrown">
+    <header class=" py-7 sticky top-0 bg-darkbrown z-40">
       <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <nav class="relative z-50 flex justify-between text-white">
             <div class="flex items-center md:gap-x-12">

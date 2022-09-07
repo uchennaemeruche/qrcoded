@@ -13,7 +13,7 @@ module.exports = {
       fontFamily:{
         sans:["inter", "sans-serif"],
       },
-      backgroundColor:{
+      colors:{
         darkbrown: "#222127",
         pinkbanner: "#E1BECF",
         greenbanner: "#87D8A7",
