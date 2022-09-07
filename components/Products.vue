@@ -1,19 +1,34 @@
 <template>
-    <div>
-        <ul role="list"
-            class="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-6 sm:gap-8 lg:mt-20 lg:max-w-none lg:grid-cols-3">
-            <li>
-                <ul role="list" class="flex flex-col gap-y-6 sm:gap-y-8">
-                    <li>
-                        <figure class="relative rounded-xl bg-white p-6 shadow-xl shadow-slate-900/10"><svg
-                                aria-hidden="true" width="105" height="78" class="absolute top-6 left-6 fill-slate-100">
-                                <path
-                                    d="M25.086 77.292c-4.821 0-9.115-1.205-12.882-3.616-3.767-2.561-6.78-6.102-9.04-10.622C1.054 58.534 0 53.411 0 47.686c0-5.273.904-10.396 2.712-15.368 1.959-4.972 4.746-9.567 8.362-13.786a59.042 59.042 0 0 1 12.43-11.3C28.325 3.917 33.599 1.507 39.324 0l11.074 13.786c-6.479 2.561-11.677 5.951-15.594 10.17-3.767 4.219-5.65 7.835-5.65 10.848 0 1.356.377 2.863 1.13 4.52.904 1.507 2.637 3.089 5.198 4.746 3.767 2.41 6.328 4.972 7.684 7.684 1.507 2.561 2.26 5.5 2.26 8.814 0 5.123-1.959 9.19-5.876 12.204-3.767 3.013-8.588 4.52-14.464 4.52Zm54.24 0c-4.821 0-9.115-1.205-12.882-3.616-3.767-2.561-6.78-6.102-9.04-10.622-2.11-4.52-3.164-9.643-3.164-15.368 0-5.273.904-10.396 2.712-15.368 1.959-4.972 4.746-9.567 8.362-13.786a59.042 59.042 0 0 1 12.43-11.3C82.565 3.917 87.839 1.507 93.564 0l11.074 13.786c-6.479 2.561-11.677 5.951-15.594 10.17-3.767 4.219-5.65 7.835-5.65 10.848 0 1.356.377 2.863 1.13 4.52.904 1.507 2.637 3.089 5.198 4.746 3.767 2.41 6.328 4.972 7.684 7.684 1.507 2.561 2.26 5.5 2.26 8.814 0 5.123-1.959 9.19-5.876 12.204-3.767 3.013-8.588 4.52-14.464 4.52Z">
-                                </path>
-                            </svg>
-                            <blockquote class="relative">
-                                <p class="text-lg tracking-tight text-slate-900">Website URL</p>
-                            </blockquote>
+    <div class="mx-auto max-w-7xl pb-20 px-4 sm:px-6 lg:px-8 relative">
+                <ul role="list" class="flex flex-wrap gap-y-6 sm:gap-y-8">
+                    <li class="p-5 lg:w-1/4">
+                        <figure class="relative bg-pinkbanner p-6 shadow-xl shadow-slate-900/10">
+                            <div class="flex flex-row items-center px-4">
+                                <svg
+                                    aria-hidden="true" width="105" height="78" viewBox="0 0 425.466 425.467">
+                                    <path d="M318.15,230.195l77.934-77.937c31.894-31.892,31.894-83.782-0.004-115.674l-12.66-12.66
+                                        c-31.893-31.896-83.78-31.896-115.674-0.004l-77.937,77.934c-17.588,17.588-25.457,41.264-23.646,64.311
+                                        c-23.045-1.813-46.722,6.056-64.308,23.647L23.92,267.748c-31.894,31.889-31.894,83.779,0,115.674l12.664,12.662
+                                        c31.893,31.893,83.783,31.893,115.674,0l77.935-77.936c17.592-17.59,25.459-41.266,23.647-64.309
+                                        C276.884,255.654,300.56,247.783,318.15,230.195z M202.653,290.605l-77.936,77.938c-16.705,16.703-43.889,16.703-60.59,0
+                                        l-12.666-12.666c-16.705-16.701-16.703-43.885,0-60.594l77.936-77.932c14.14-14.141,35.779-16.306,52.226-6.516l-32.302,32.307
+                                        c-7.606,7.604-7.606,19.938,0,27.541c7.605,7.607,19.937,7.607,27.541,0l32.306-32.303
+                                        C218.959,254.828,216.795,276.469,202.653,290.605z M238.382,209.169l32.299-32.306c7.608-7.602,7.608-19.935,0-27.538
+                                        c-7.604-7.61-19.936-7.61-27.541-0.004l-32.303,32.303c-9.791-16.446-7.627-38.087,6.514-52.226l77.935-77.935
+                                        c16.707-16.707,43.89-16.707,60.594,0l12.664,12.664c16.705,16.705,16.705,43.886,0,60.591l-77.936,77.937
+                                        C276.468,216.797,254.828,218.959,238.382,209.169z"/>
+                                    <path d="M343.466,261.465c-45.287,0-82,36.713-82,82s36.713,82,82,82c45.286,0,82-36.713,82-82S388.753,261.465,343.466,261.465z
+                                        M372.505,333.564l-56.046,56.104c-0.239,0.238-0.536,0.41-0.862,0.496l-22.315,5.85c-0.649,0.168-1.347-0.02-1.822-0.494
+                                        c-0.477-0.479-0.666-1.172-0.496-1.824l5.826-22.318c0.084-0.326,0.256-0.627,0.494-0.863l56.047-56.104
+                                        c0.742-0.742,1.945-0.744,2.688-0.002l4.548,4.541c0.739,0.74,0.741,1.943,0,2.688l-37.433,37.471l4.709,4.703l37.435-37.471
+                                        c0.739-0.742,1.94-0.742,2.682-0.002l4.55,4.541C373.25,331.617,373.25,332.822,372.505,333.564z M395.472,310.574l-17,17.018
+                                        c-0.739,0.744-1.942,0.744-2.685,0.002l-16.489-16.475c-0.744-0.74-0.744-1.943-0.002-2.688l17-17.02
+                                        c0.741-0.74,1.944-0.74,2.688-0.002l16.487,16.477C396.216,308.629,396.216,309.832,395.472,310.574z"/>
+                                </svg>
+                                <blockquote class="relative">
+                                    <p class="text-lg tracking-tight text-slate-900">Encode Website URL</p>
+                                </blockquote>
+                            </div>
                             <figcaption
                                 class="relative mt-6 flex items-center justify-between border-t border-slate-100 pt-6">
                                 <div>
@@ -28,147 +43,132 @@
                             </figcaption>
                         </figure>
                     </li>
-                    <li>
-                        <figure class="relative rounded-2xl bg-white p-6 shadow-xl shadow-slate-900/10"><svg
-                                aria-hidden="true" width="105" height="78" class="absolute top-6 left-6 fill-slate-100">
-                                <path
-                                    d="M25.086 77.292c-4.821 0-9.115-1.205-12.882-3.616-3.767-2.561-6.78-6.102-9.04-10.622C1.054 58.534 0 53.411 0 47.686c0-5.273.904-10.396 2.712-15.368 1.959-4.972 4.746-9.567 8.362-13.786a59.042 59.042 0 0 1 12.43-11.3C28.325 3.917 33.599 1.507 39.324 0l11.074 13.786c-6.479 2.561-11.677 5.951-15.594 10.17-3.767 4.219-5.65 7.835-5.65 10.848 0 1.356.377 2.863 1.13 4.52.904 1.507 2.637 3.089 5.198 4.746 3.767 2.41 6.328 4.972 7.684 7.684 1.507 2.561 2.26 5.5 2.26 8.814 0 5.123-1.959 9.19-5.876 12.204-3.767 3.013-8.588 4.52-14.464 4.52Zm54.24 0c-4.821 0-9.115-1.205-12.882-3.616-3.767-2.561-6.78-6.102-9.04-10.622-2.11-4.52-3.164-9.643-3.164-15.368 0-5.273.904-10.396 2.712-15.368 1.959-4.972 4.746-9.567 8.362-13.786a59.042 59.042 0 0 1 12.43-11.3C82.565 3.917 87.839 1.507 93.564 0l11.074 13.786c-6.479 2.561-11.677 5.951-15.594 10.17-3.767 4.219-5.65 7.835-5.65 10.848 0 1.356.377 2.863 1.13 4.52.904 1.507 2.637 3.089 5.198 4.746 3.767 2.41 6.328 4.972 7.684 7.684 1.507 2.561 2.26 5.5 2.26 8.814 0 5.123-1.959 9.19-5.876 12.204-3.767 3.013-8.588 4.52-14.464 4.52Z">
-                                </path>
-                            </svg>
-                            <blockquote class="relative">
-                                <p class="text-lg tracking-tight text-slate-900">I’m trying to get a hold of someone in
-                                    support, I’m in a lot of trouble right now and they are saying it has something to
-                                    do with my books. Please get back to me right away.</p>
-                            </blockquote>
+                    <li class="p-5 lg:w-1/4">
+                        <figure class="relative bg-greenbanner p-6 shadow-xl shadow-slate-900/10">
+                            <div class="flex flex-row items-center px-4">
+                                <svg
+                                    aria-hidden="true" width="105" height="78" viewBox="0 0 425.466 425.467">
+                                    <path d="M318.15,230.195l77.934-77.937c31.894-31.892,31.894-83.782-0.004-115.674l-12.66-12.66
+                                        c-31.893-31.896-83.78-31.896-115.674-0.004l-77.937,77.934c-17.588,17.588-25.457,41.264-23.646,64.311
+                                        c-23.045-1.813-46.722,6.056-64.308,23.647L23.92,267.748c-31.894,31.889-31.894,83.779,0,115.674l12.664,12.662
+                                        c31.893,31.893,83.783,31.893,115.674,0l77.935-77.936c17.592-17.59,25.459-41.266,23.647-64.309
+                                        C276.884,255.654,300.56,247.783,318.15,230.195z M202.653,290.605l-77.936,77.938c-16.705,16.703-43.889,16.703-60.59,0
+                                        l-12.666-12.666c-16.705-16.701-16.703-43.885,0-60.594l77.936-77.932c14.14-14.141,35.779-16.306,52.226-6.516l-32.302,32.307
+                                        c-7.606,7.604-7.606,19.938,0,27.541c7.605,7.607,19.937,7.607,27.541,0l32.306-32.303
+                                        C218.959,254.828,216.795,276.469,202.653,290.605z M238.382,209.169l32.299-32.306c7.608-7.602,7.608-19.935,0-27.538
+                                        c-7.604-7.61-19.936-7.61-27.541-0.004l-32.303,32.303c-9.791-16.446-7.627-38.087,6.514-52.226l77.935-77.935
+                                        c16.707-16.707,43.89-16.707,60.594,0l12.664,12.664c16.705,16.705,16.705,43.886,0,60.591l-77.936,77.937
+                                        C276.468,216.797,254.828,218.959,238.382,209.169z"/>
+                                    <path d="M343.466,261.465c-45.287,0-82,36.713-82,82s36.713,82,82,82c45.286,0,82-36.713,82-82S388.753,261.465,343.466,261.465z
+                                        M372.505,333.564l-56.046,56.104c-0.239,0.238-0.536,0.41-0.862,0.496l-22.315,5.85c-0.649,0.168-1.347-0.02-1.822-0.494
+                                        c-0.477-0.479-0.666-1.172-0.496-1.824l5.826-22.318c0.084-0.326,0.256-0.627,0.494-0.863l56.047-56.104
+                                        c0.742-0.742,1.945-0.744,2.688-0.002l4.548,4.541c0.739,0.74,0.741,1.943,0,2.688l-37.433,37.471l4.709,4.703l37.435-37.471
+                                        c0.739-0.742,1.94-0.742,2.682-0.002l4.55,4.541C373.25,331.617,373.25,332.822,372.505,333.564z M395.472,310.574l-17,17.018
+                                        c-0.739,0.744-1.942,0.744-2.685,0.002l-16.489-16.475c-0.744-0.74-0.744-1.943-0.002-2.688l17-17.02
+                                        c0.741-0.74,1.944-0.74,2.688-0.002l16.487,16.477C396.216,308.629,396.216,309.832,395.472,310.574z"/>
+                                </svg>
+                                <blockquote class="relative">
+                                    <p class="text-lg tracking-tight text-slate-900">PDF</p>
+                                </blockquote>
+                            </div>
                             <figcaption
                                 class="relative mt-6 flex items-center justify-between border-t border-slate-100 pt-6">
                                 <div>
-                                    <div class="font-display text-base text-slate-900">Amy Hahn</div>
-                                    <div class="mt-1 text-sm text-slate-500">Director at Velocity Industries</div>
+                                    <div class="font-display text-base text-slate-900">Sheryl Berge</div>
+                                    <div class="mt-1 text-sm text-slate-500">CEO at Lynch LLC</div>
                                 </div>
                                 <div class="overflow-hidden rounded-full bg-slate-50"><img alt=""
-                                        srcset="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Favatar-4.16b4e29e.png&amp;w=64&amp;q=75 1x, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Favatar-4.16b4e29e.png&amp;w=128&amp;q=75 2x"
-                                        src="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Favatar-4.16b4e29e.png&amp;w=128&amp;q=75"
+                                        srcset="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Favatar-1.c78616b7.png&amp;w=64&amp;q=75 1x, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Favatar-1.c78616b7.png&amp;w=128&amp;q=75 2x"
+                                        src="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Favatar-1.c78616b7.png&amp;w=128&amp;q=75"
+                                        width="56" height="56" decoding="async" data-nimg="future"
+                                        class="h-14 w-14 object-cover" loading="lazy"></div>
+                            </figcaption>
+                        </figure>
+                    </li>
+                    <li class="p-5 lg:w-1/4">
+                        <figure class="relative bg-graybanner p-6 shadow-xl shadow-slate-900/10">
+                            <div class="flex flex-row items-center px-4">
+                                <svg
+                                    aria-hidden="true" width="105" height="78" viewBox="0 0 425.466 425.467">
+                                    <path d="M318.15,230.195l77.934-77.937c31.894-31.892,31.894-83.782-0.004-115.674l-12.66-12.66
+                                        c-31.893-31.896-83.78-31.896-115.674-0.004l-77.937,77.934c-17.588,17.588-25.457,41.264-23.646,64.311
+                                        c-23.045-1.813-46.722,6.056-64.308,23.647L23.92,267.748c-31.894,31.889-31.894,83.779,0,115.674l12.664,12.662
+                                        c31.893,31.893,83.783,31.893,115.674,0l77.935-77.936c17.592-17.59,25.459-41.266,23.647-64.309
+                                        C276.884,255.654,300.56,247.783,318.15,230.195z M202.653,290.605l-77.936,77.938c-16.705,16.703-43.889,16.703-60.59,0
+                                        l-12.666-12.666c-16.705-16.701-16.703-43.885,0-60.594l77.936-77.932c14.14-14.141,35.779-16.306,52.226-6.516l-32.302,32.307
+                                        c-7.606,7.604-7.606,19.938,0,27.541c7.605,7.607,19.937,7.607,27.541,0l32.306-32.303
+                                        C218.959,254.828,216.795,276.469,202.653,290.605z M238.382,209.169l32.299-32.306c7.608-7.602,7.608-19.935,0-27.538
+                                        c-7.604-7.61-19.936-7.61-27.541-0.004l-32.303,32.303c-9.791-16.446-7.627-38.087,6.514-52.226l77.935-77.935
+                                        c16.707-16.707,43.89-16.707,60.594,0l12.664,12.664c16.705,16.705,16.705,43.886,0,60.591l-77.936,77.937
+                                        C276.468,216.797,254.828,218.959,238.382,209.169z"/>
+                                    <path d="M343.466,261.465c-45.287,0-82,36.713-82,82s36.713,82,82,82c45.286,0,82-36.713,82-82S388.753,261.465,343.466,261.465z
+                                        M372.505,333.564l-56.046,56.104c-0.239,0.238-0.536,0.41-0.862,0.496l-22.315,5.85c-0.649,0.168-1.347-0.02-1.822-0.494
+                                        c-0.477-0.479-0.666-1.172-0.496-1.824l5.826-22.318c0.084-0.326,0.256-0.627,0.494-0.863l56.047-56.104
+                                        c0.742-0.742,1.945-0.744,2.688-0.002l4.548,4.541c0.739,0.74,0.741,1.943,0,2.688l-37.433,37.471l4.709,4.703l37.435-37.471
+                                        c0.739-0.742,1.94-0.742,2.682-0.002l4.55,4.541C373.25,331.617,373.25,332.822,372.505,333.564z M395.472,310.574l-17,17.018
+                                        c-0.739,0.744-1.942,0.744-2.685,0.002l-16.489-16.475c-0.744-0.74-0.744-1.943-0.002-2.688l17-17.02
+                                        c0.741-0.74,1.944-0.74,2.688-0.002l16.487,16.477C396.216,308.629,396.216,309.832,395.472,310.574z"/>
+                                </svg>
+                                <blockquote class="relative">
+                                    <p class="text-lg tracking-tight text-slate-900">Images</p>
+                                </blockquote>
+                            </div>
+                            <figcaption
+                                class="relative mt-6 flex items-center justify-between border-t border-slate-100 pt-6">
+                                <div>
+                                    <div class="font-display text-base text-slate-900">Sheryl Berge</div>
+                                    <div class="mt-1 text-sm text-slate-500">CEO at Lynch LLC</div>
+                                </div>
+                                <div class="overflow-hidden rounded-full bg-slate-50"><img alt=""
+                                        srcset="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Favatar-1.c78616b7.png&amp;w=64&amp;q=75 1x, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Favatar-1.c78616b7.png&amp;w=128&amp;q=75 2x"
+                                        src="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Favatar-1.c78616b7.png&amp;w=128&amp;q=75"
+                                        width="56" height="56" decoding="async" data-nimg="future"
+                                        class="h-14 w-14 object-cover" loading="lazy"></div>
+                            </figcaption>
+                        </figure>
+                    </li>
+                    <li class="p-5 lg:w-1/4">
+                        <figure class="relative bg-brownbanner p-6 shadow-xl shadow-slate-900/10">
+                            <div class="flex flex-row items-center px-4">
+                                <svg
+                                    aria-hidden="true" width="105" height="78" viewBox="0 0 425.466 425.467">
+                                    <path d="M318.15,230.195l77.934-77.937c31.894-31.892,31.894-83.782-0.004-115.674l-12.66-12.66
+                                        c-31.893-31.896-83.78-31.896-115.674-0.004l-77.937,77.934c-17.588,17.588-25.457,41.264-23.646,64.311
+                                        c-23.045-1.813-46.722,6.056-64.308,23.647L23.92,267.748c-31.894,31.889-31.894,83.779,0,115.674l12.664,12.662
+                                        c31.893,31.893,83.783,31.893,115.674,0l77.935-77.936c17.592-17.59,25.459-41.266,23.647-64.309
+                                        C276.884,255.654,300.56,247.783,318.15,230.195z M202.653,290.605l-77.936,77.938c-16.705,16.703-43.889,16.703-60.59,0
+                                        l-12.666-12.666c-16.705-16.701-16.703-43.885,0-60.594l77.936-77.932c14.14-14.141,35.779-16.306,52.226-6.516l-32.302,32.307
+                                        c-7.606,7.604-7.606,19.938,0,27.541c7.605,7.607,19.937,7.607,27.541,0l32.306-32.303
+                                        C218.959,254.828,216.795,276.469,202.653,290.605z M238.382,209.169l32.299-32.306c7.608-7.602,7.608-19.935,0-27.538
+                                        c-7.604-7.61-19.936-7.61-27.541-0.004l-32.303,32.303c-9.791-16.446-7.627-38.087,6.514-52.226l77.935-77.935
+                                        c16.707-16.707,43.89-16.707,60.594,0l12.664,12.664c16.705,16.705,16.705,43.886,0,60.591l-77.936,77.937
+                                        C276.468,216.797,254.828,218.959,238.382,209.169z"/>
+                                    <path d="M343.466,261.465c-45.287,0-82,36.713-82,82s36.713,82,82,82c45.286,0,82-36.713,82-82S388.753,261.465,343.466,261.465z
+                                        M372.505,333.564l-56.046,56.104c-0.239,0.238-0.536,0.41-0.862,0.496l-22.315,5.85c-0.649,0.168-1.347-0.02-1.822-0.494
+                                        c-0.477-0.479-0.666-1.172-0.496-1.824l5.826-22.318c0.084-0.326,0.256-0.627,0.494-0.863l56.047-56.104
+                                        c0.742-0.742,1.945-0.744,2.688-0.002l4.548,4.541c0.739,0.74,0.741,1.943,0,2.688l-37.433,37.471l4.709,4.703l37.435-37.471
+                                        c0.739-0.742,1.94-0.742,2.682-0.002l4.55,4.541C373.25,331.617,373.25,332.822,372.505,333.564z M395.472,310.574l-17,17.018
+                                        c-0.739,0.744-1.942,0.744-2.685,0.002l-16.489-16.475c-0.744-0.74-0.744-1.943-0.002-2.688l17-17.02
+                                        c0.741-0.74,1.944-0.74,2.688-0.002l16.487,16.477C396.216,308.629,396.216,309.832,395.472,310.574z"/>
+                                </svg>
+                                <blockquote class="relative">
+                                    <p class="text-lg tracking-tight text-slate-900">Restaurant Menu</p>
+                                </blockquote>
+                            </div>
+                            <figcaption
+                                class="relative mt-6 flex items-center justify-between border-t border-slate-100 pt-6">
+                                <div>
+                                    <div class="font-display text-base text-slate-900">Sheryl Berge</div>
+                                    <div class="mt-1 text-sm text-slate-500">CEO at Lynch LLC</div>
+                                </div>
+                                <div class="overflow-hidden rounded-full bg-slate-50"><img alt=""
+                                        srcset="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Favatar-1.c78616b7.png&amp;w=64&amp;q=75 1x, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Favatar-1.c78616b7.png&amp;w=128&amp;q=75 2x"
+                                        src="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Favatar-1.c78616b7.png&amp;w=128&amp;q=75"
                                         width="56" height="56" decoding="async" data-nimg="future"
                                         class="h-14 w-14 object-cover" loading="lazy"></div>
                             </figcaption>
                         </figure>
                     </li>
                 </ul>
-            </li>
-            <li>
-                <ul role="list" class="flex flex-col gap-y-6 sm:gap-y-8">
-                    <li>
-                        <figure class="relative rounded-2xl bg-white p-6 shadow-xl shadow-slate-900/10"><svg
-                                aria-hidden="true" width="105" height="78" class="absolute top-6 left-6 fill-slate-100">
-                                <path
-                                    d="M25.086 77.292c-4.821 0-9.115-1.205-12.882-3.616-3.767-2.561-6.78-6.102-9.04-10.622C1.054 58.534 0 53.411 0 47.686c0-5.273.904-10.396 2.712-15.368 1.959-4.972 4.746-9.567 8.362-13.786a59.042 59.042 0 0 1 12.43-11.3C28.325 3.917 33.599 1.507 39.324 0l11.074 13.786c-6.479 2.561-11.677 5.951-15.594 10.17-3.767 4.219-5.65 7.835-5.65 10.848 0 1.356.377 2.863 1.13 4.52.904 1.507 2.637 3.089 5.198 4.746 3.767 2.41 6.328 4.972 7.684 7.684 1.507 2.561 2.26 5.5 2.26 8.814 0 5.123-1.959 9.19-5.876 12.204-3.767 3.013-8.588 4.52-14.464 4.52Zm54.24 0c-4.821 0-9.115-1.205-12.882-3.616-3.767-2.561-6.78-6.102-9.04-10.622-2.11-4.52-3.164-9.643-3.164-15.368 0-5.273.904-10.396 2.712-15.368 1.959-4.972 4.746-9.567 8.362-13.786a59.042 59.042 0 0 1 12.43-11.3C82.565 3.917 87.839 1.507 93.564 0l11.074 13.786c-6.479 2.561-11.677 5.951-15.594 10.17-3.767 4.219-5.65 7.835-5.65 10.848 0 1.356.377 2.863 1.13 4.52.904 1.507 2.637 3.089 5.198 4.746 3.767 2.41 6.328 4.972 7.684 7.684 1.507 2.561 2.26 5.5 2.26 8.814 0 5.123-1.959 9.19-5.876 12.204-3.767 3.013-8.588 4.52-14.464 4.52Z">
-                                </path>
-                            </svg>
-                            <blockquote class="relative">
-                                <p class="text-lg tracking-tight text-slate-900">The best part about TaxPal is every
-                                    time I pay my employees, my bank balance doesn’t go down like it used to. Looking
-                                    forward to spending this extra cash when I figure out why my card is being declined.
-                                </p>
-                            </blockquote>
-                            <figcaption
-                                class="relative mt-6 flex items-center justify-between border-t border-slate-100 pt-6">
-                                <div>
-                                    <div class="font-display text-base text-slate-900">Leland Kiehn</div>
-                                    <div class="mt-1 text-sm text-slate-500">Founder of Kiehn and Sons</div>
-                                </div>
-                                <div class="overflow-hidden rounded-full bg-slate-50"><img alt=""
-                                        srcset="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Favatar-5.e7f7faf2.png&amp;w=64&amp;q=75 1x, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Favatar-5.e7f7faf2.png&amp;w=128&amp;q=75 2x"
-                                        src="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Favatar-5.e7f7faf2.png&amp;w=128&amp;q=75"
-                                        width="56" height="56" decoding="async" data-nimg="future"
-                                        class="h-14 w-14 object-cover" loading="lazy"></div>
-                            </figcaption>
-                        </figure>
-                    </li>
-                    <li>
-                        <figure class="relative rounded-2xl bg-white p-6 shadow-xl shadow-slate-900/10"><svg
-                                aria-hidden="true" width="105" height="78" class="absolute top-6 left-6 fill-slate-100">
-                                <path
-                                    d="M25.086 77.292c-4.821 0-9.115-1.205-12.882-3.616-3.767-2.561-6.78-6.102-9.04-10.622C1.054 58.534 0 53.411 0 47.686c0-5.273.904-10.396 2.712-15.368 1.959-4.972 4.746-9.567 8.362-13.786a59.042 59.042 0 0 1 12.43-11.3C28.325 3.917 33.599 1.507 39.324 0l11.074 13.786c-6.479 2.561-11.677 5.951-15.594 10.17-3.767 4.219-5.65 7.835-5.65 10.848 0 1.356.377 2.863 1.13 4.52.904 1.507 2.637 3.089 5.198 4.746 3.767 2.41 6.328 4.972 7.684 7.684 1.507 2.561 2.26 5.5 2.26 8.814 0 5.123-1.959 9.19-5.876 12.204-3.767 3.013-8.588 4.52-14.464 4.52Zm54.24 0c-4.821 0-9.115-1.205-12.882-3.616-3.767-2.561-6.78-6.102-9.04-10.622-2.11-4.52-3.164-9.643-3.164-15.368 0-5.273.904-10.396 2.712-15.368 1.959-4.972 4.746-9.567 8.362-13.786a59.042 59.042 0 0 1 12.43-11.3C82.565 3.917 87.839 1.507 93.564 0l11.074 13.786c-6.479 2.561-11.677 5.951-15.594 10.17-3.767 4.219-5.65 7.835-5.65 10.848 0 1.356.377 2.863 1.13 4.52.904 1.507 2.637 3.089 5.198 4.746 3.767 2.41 6.328 4.972 7.684 7.684 1.507 2.561 2.26 5.5 2.26 8.814 0 5.123-1.959 9.19-5.876 12.204-3.767 3.013-8.588 4.52-14.464 4.52Z">
-                                </path>
-                            </svg>
-                            <blockquote class="relative">
-                                <p class="text-lg tracking-tight text-slate-900">There are so many things I had to do
-                                    with my old software that I just don’t do at all with TaxPal. Suspicious but I can’t
-                                    say I don’t love it.</p>
-                            </blockquote>
-                            <figcaption
-                                class="relative mt-6 flex items-center justify-between border-t border-slate-100 pt-6">
-                                <div>
-                                    <div class="font-display text-base text-slate-900">Erin Powlowski</div>
-                                    <div class="mt-1 text-sm text-slate-500">COO at Armstrong Inc</div>
-                                </div>
-                                <div class="overflow-hidden rounded-full bg-slate-50"><img alt=""
-                                        srcset="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Favatar-2.c72e5a40.png&amp;w=64&amp;q=75 1x, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Favatar-2.c72e5a40.png&amp;w=128&amp;q=75 2x"
-                                        src="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Favatar-2.c72e5a40.png&amp;w=128&amp;q=75"
-                                        width="56" height="56" decoding="async" data-nimg="future"
-                                        class="h-14 w-14 object-cover" loading="lazy"></div>
-                            </figcaption>
-                        </figure>
-                    </li>
-                </ul>
-            </li>
-            <li>
-                <ul role="list" class="flex flex-col gap-y-6 sm:gap-y-8">
-                    <li>
-                        <figure class="relative rounded-2xl bg-white p-6 shadow-xl shadow-slate-900/10"><svg
-                                aria-hidden="true" width="105" height="78" class="absolute top-6 left-6 fill-slate-100">
-                                <path
-                                    d="M25.086 77.292c-4.821 0-9.115-1.205-12.882-3.616-3.767-2.561-6.78-6.102-9.04-10.622C1.054 58.534 0 53.411 0 47.686c0-5.273.904-10.396 2.712-15.368 1.959-4.972 4.746-9.567 8.362-13.786a59.042 59.042 0 0 1 12.43-11.3C28.325 3.917 33.599 1.507 39.324 0l11.074 13.786c-6.479 2.561-11.677 5.951-15.594 10.17-3.767 4.219-5.65 7.835-5.65 10.848 0 1.356.377 2.863 1.13 4.52.904 1.507 2.637 3.089 5.198 4.746 3.767 2.41 6.328 4.972 7.684 7.684 1.507 2.561 2.26 5.5 2.26 8.814 0 5.123-1.959 9.19-5.876 12.204-3.767 3.013-8.588 4.52-14.464 4.52Zm54.24 0c-4.821 0-9.115-1.205-12.882-3.616-3.767-2.561-6.78-6.102-9.04-10.622-2.11-4.52-3.164-9.643-3.164-15.368 0-5.273.904-10.396 2.712-15.368 1.959-4.972 4.746-9.567 8.362-13.786a59.042 59.042 0 0 1 12.43-11.3C82.565 3.917 87.839 1.507 93.564 0l11.074 13.786c-6.479 2.561-11.677 5.951-15.594 10.17-3.767 4.219-5.65 7.835-5.65 10.848 0 1.356.377 2.863 1.13 4.52.904 1.507 2.637 3.089 5.198 4.746 3.767 2.41 6.328 4.972 7.684 7.684 1.507 2.561 2.26 5.5 2.26 8.814 0 5.123-1.959 9.19-5.876 12.204-3.767 3.013-8.588 4.52-14.464 4.52Z">
-                                </path>
-                            </svg>
-                            <blockquote class="relative">
-                                <p class="text-lg tracking-tight text-slate-900">I used to have to remit tax to the EU
-                                    and with TaxPal I somehow don’t have to do that anymore. Nervous to travel there now
-                                    though.</p>
-                            </blockquote>
-                            <figcaption
-                                class="relative mt-6 flex items-center justify-between border-t border-slate-100 pt-6">
-                                <div>
-                                    <div class="font-display text-base text-slate-900">Peter Renolds</div>
-                                    <div class="mt-1 text-sm text-slate-500">Founder of West Inc</div>
-                                </div>
-                                <div class="overflow-hidden rounded-full bg-slate-50"><img alt=""
-                                        srcset="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Favatar-3.eaa9ef6f.png&amp;w=64&amp;q=75 1x, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Favatar-3.eaa9ef6f.png&amp;w=128&amp;q=75 2x"
-                                        src="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Favatar-3.eaa9ef6f.png&amp;w=128&amp;q=75"
-                                        width="56" height="56" decoding="async" data-nimg="future"
-                                        class="h-14 w-14 object-cover" loading="lazy"></div>
-                            </figcaption>
-                        </figure>
-                    </li>
-                    <li>
-                        <figure class="relative rounded-2xl bg-white p-6 shadow-xl shadow-slate-900/10"><svg
-                                aria-hidden="true" width="105" height="78" class="absolute top-6 left-6 fill-slate-100">
-                                <path
-                                    d="M25.086 77.292c-4.821 0-9.115-1.205-12.882-3.616-3.767-2.561-6.78-6.102-9.04-10.622C1.054 58.534 0 53.411 0 47.686c0-5.273.904-10.396 2.712-15.368 1.959-4.972 4.746-9.567 8.362-13.786a59.042 59.042 0 0 1 12.43-11.3C28.325 3.917 33.599 1.507 39.324 0l11.074 13.786c-6.479 2.561-11.677 5.951-15.594 10.17-3.767 4.219-5.65 7.835-5.65 10.848 0 1.356.377 2.863 1.13 4.52.904 1.507 2.637 3.089 5.198 4.746 3.767 2.41 6.328 4.972 7.684 7.684 1.507 2.561 2.26 5.5 2.26 8.814 0 5.123-1.959 9.19-5.876 12.204-3.767 3.013-8.588 4.52-14.464 4.52Zm54.24 0c-4.821 0-9.115-1.205-12.882-3.616-3.767-2.561-6.78-6.102-9.04-10.622-2.11-4.52-3.164-9.643-3.164-15.368 0-5.273.904-10.396 2.712-15.368 1.959-4.972 4.746-9.567 8.362-13.786a59.042 59.042 0 0 1 12.43-11.3C82.565 3.917 87.839 1.507 93.564 0l11.074 13.786c-6.479 2.561-11.677 5.951-15.594 10.17-3.767 4.219-5.65 7.835-5.65 10.848 0 1.356.377 2.863 1.13 4.52.904 1.507 2.637 3.089 5.198 4.746 3.767 2.41 6.328 4.972 7.684 7.684 1.507 2.561 2.26 5.5 2.26 8.814 0 5.123-1.959 9.19-5.876 12.204-3.767 3.013-8.588 4.52-14.464 4.52Z">
-                                </path>
-                            </svg>
-                            <blockquote class="relative">
-                                <p class="text-lg tracking-tight text-slate-900">This is the fourth email I’ve sent to
-                                    your support team. I am literally being held in jail for tax fraud. Please answer
-                                    your damn emails, this is important.</p>
-                            </blockquote>
-                            <figcaption
-                                class="relative mt-6 flex items-center justify-between border-t border-slate-100 pt-6">
-                                <div>
-                                    <div class="font-display text-base text-slate-900">Amy Hahn</div>
-                                    <div class="mt-1 text-sm text-slate-500">Director at Velocity Industries</div>
-                                </div>
-                                <div class="overflow-hidden rounded-full bg-slate-50"><img alt=""
-                                        srcset="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Favatar-4.16b4e29e.png&amp;w=64&amp;q=75 1x, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Favatar-4.16b4e29e.png&amp;w=128&amp;q=75 2x"
-                                        src="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Favatar-4.16b4e29e.png&amp;w=128&amp;q=75"
-                                        width="56" height="56" decoding="async" data-nimg="future"
-                                        class="h-14 w-14 object-cover" loading="lazy"></div>
-                            </figcaption>
-                        </figure>
-                    </li>
-                </ul>
-            </li>
-        </ul>
     </div>
 </template>

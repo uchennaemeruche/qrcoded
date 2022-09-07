@@ -15,6 +15,10 @@ module.exports = {
       },
       backgroundColor:{
         darkbrown: "#222127",
+        pinkbanner: "#E1BECF",
+        greenbanner: "#87D8A7",
+        graybanner: "#A6BFE3",
+        brownbanner: "#DFA268",
       },
       spacing:{
         desktop: "100px",
