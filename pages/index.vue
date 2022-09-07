@@ -1,7 +1,10 @@
 
 <template>
-    <div>
-        <h1>Hello There</h1>
-        <HeaderComponent/>
+    <div class="bg-darkbrown">
+        <Header/>
+        <Landing/>
+        <Products/>
+        <Faq/>
+        <Footer/>
     </div>
 </template>
