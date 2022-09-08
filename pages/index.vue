@@ -4,6 +4,7 @@
         <Header/>
         <Landing/>
         <Products/>
+        <Cards/>
         <Faq/>
         <Footer/>
     </div>
