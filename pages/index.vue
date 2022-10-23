@@ -4,7 +4,9 @@
         <Header/>
         <Landing/>
         <Products/>
-        <Cards/>
+        <VerticalTab/>
+        <!-- <Tabs/> -->
+        <!-- <Cards/> -->
         <Faq/>
         <Footer/>
     </div>
