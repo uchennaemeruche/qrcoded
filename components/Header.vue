@@ -3,7 +3,7 @@
       <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <nav class="relative z-50 flex justify-between text-white">
             <div class="flex items-center md:gap-x-12">
-              <a aria-label="Home" href="/#"><span class="text-blue-600">Qr</span>Codify</a>
+              <a aria-label="Home" href="/#"><span class="text-blue-600">Q</span>Content</a>
               <div class="hidden md:flex md:gap-x-6">
                 <a
                 class="inline-block rounded-lg py-1 px-2 text-sm text-white hover:bg-slate-100 hover:text-slate-900"
