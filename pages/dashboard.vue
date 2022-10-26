@@ -1,14 +1,15 @@
 
 <template>
     <div class="flex flex-row" :class="darkTheme ? 'dark' : ''">
-        <div class="absolute top-0 left-0 w-full lg:relative w-72 lg:w-2/12 z-10" id="sidedrawar">
+        <div class="absolute top-0 left-0 w-full lg:relative w-72 lg:w-2/12 z-10 bg-red-900" id="sidedrawar">
             <DashboardDrawer2 />
         </div>
 
         <!-- Sidebars buttons -->
 
         <!-- Main Content -->
-        <div class="flex flex-col w-full lg:w-10/12">
+        <!-- <div class="flex flex-col w-full lg:w-10/12"> -->
+        <div class="flex flex-col w-full lg:w-10/12 ">
             <DashboardNavbar/>
             <!-- <div class="fixed top-0 flex w-full h-12 bg-white">
                 <div class="sticky lg:hidden flex items-center space-x-4 ">

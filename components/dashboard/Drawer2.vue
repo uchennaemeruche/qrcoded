@@ -1,5 +1,5 @@
 <template >
-    <div class="h-full fixed">
+   
 
         <!-- Sidebar first column -->
         <!-- Backdrop -->
@@ -257,8 +257,6 @@
             </div>
             </div>
         </Transition>
-
-    </div>
 </template>
 <script setup lang="ts">
 import { Switch, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/vue'

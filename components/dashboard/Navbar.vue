@@ -7,8 +7,8 @@
       <body class="h-full">
       ```
     -->
-    <div class="sticky top-0 left-0 w-full z-10">
-        <Disclosure as="nav" class="bg-gray-800" v-slot="{ open }">
+    <div class="sticky top-0 left-0 w-full z-10 shadow-md bg-white dark:bg-gray-800 dark:border-gray-700">
+        <Disclosure as="nav" class="" v-slot="{ open }">
             <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div class="flex h-16 items-center justify-between">
                     <div class="flex items-center">
