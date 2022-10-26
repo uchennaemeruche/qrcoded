@@ -53,6 +53,8 @@ module.exports = {
         greenbanner: "#87D8A7",
         graybanner: "#A6BFE3",
         brownbanner: "#DFA268",
+        skyblue: 'rgb(82 179 208)',
+        primaryblue: 'rgb(99 102 241/var(--tw-bg-opacity))',
         primary: {
           50: "#eff6ff",
           100: "#dbeafe",

@@ -14,8 +14,8 @@
             leave-class="transition-all transform duration-300 ease-in-out"
             leave-from-class="translate-x-0 opacity-100"
             leave-to-class="-translate-x-full opacity-0"
-            class="fixed inset-y-0 z-10 flex-shrink-0 top-0 left-0 w-full h-full" aria-label="Sidenav">
-            <div class="h-full " style="height: 100vh;" >
+            class="inset-y-0 z-10 flex-shrink-0 h-full relative" aria-label="Sidenav">
+            <div class="h-full fixed w-full w-72 lg:w-2/12" >
                 <div
                 class="overflow-y-auto py-12 px-3 h-full bg-white border-r border-gray-200 dark:bg-gray-800 dark:border-gray-700">
                 <ul class="space-y-2">

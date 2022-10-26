@@ -7,7 +7,7 @@
       <body class="h-full">
       ```
     -->
-    <div class="sticky top-0 left-0 w-full z-10 shadow-md bg-white dark:bg-gray-800 dark:border-gray-700">
+    <div class="sticky top-0 left-0 w-full z-10 shadow-md bg-white  dark:border-gray-700">
         <Disclosure as="nav" class="" v-slot="{ open }">
             <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div class="flex h-16 items-center justify-between">
@@ -16,13 +16,23 @@
                             <img class="h-8 w-8" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
                                 alt="Your Company" />
                         </div>
-                        <div class="hidden md:block">
+                        
                             <div class="ml-10 flex items-baseline space-x-4">
-                                <a v-for="item in navigation" :key="item.name" :href="item.href"
-                                    :class="[item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white', 'px-3 py-2 rounded-md text-sm font-medium']"
-                                    :aria-current="item.current ? 'page' : undefined">{{ item.name }}</a>
+                                <!-- <a v-for="item in navigation" :key="item.name" :href="item.href"
+                                    :class="[item.current ? 'bg-skyblue text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white', 'px-3 py-2 rounded-md text-sm font-medium']"
+                                    :aria-current="item.current ? 'page' : undefined">{{ item.name }}</a> -->
+                                <button @click="handleNextClick" class="flex items-center space-x-2 bg-blue-100 text-blue-900 px-3 py-2 rounded-md text-sm font-medium"
+                                    aria-current="page">
+                                    <span>Next</span>
+
+                                    <svg class="w-8 fill-blue-900" viewBox="0 0 512 512">
+                                        <polygon
+                                            points="359.873 121.377 337.246 144.004 433.243 240.001 16 240.001 16 240.002 16 272.001 16 272.002 433.24 272.002 337.246 367.996 359.873 390.623 494.498 256 359.873 121.377"
+                                            class="ci-primary" />
+                                    </svg>
+                                </button>
                             </div>
-                        </div>
+                        
                     </div>
                     <div class="hidden md:block">
                         <div class="ml-4 flex items-center md:ml-6">
@@ -85,8 +95,8 @@
                         <DisclosureButton @click="isSidebarOpen = !isSidebarOpen;"
                             class="inline-flex items-center justify-center rounded-md bg-gray-800 p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                             <span class="sr-only">Open main menu</span>
-                            <svg v-if="!isSidebarOpen" class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <svg v-if="!isSidebarOpen" class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg"
+                                fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M4 6h16M4 12h16M4 18h16" />
                             </svg>
@@ -157,4 +167,19 @@ const userNavigation = [
     { name: 'Settings', href: '#' },
     { name: 'Sign out', href: '#' },
 ]
+
+const typeSelected = useState('typeSelected')
+const isOpen = useState('isOpen', () => false)
+
+
+function closeModal() {
+    isOpen.value = false
+}
+function openModal() {
+    isOpen.value = true
+}
+
+const handleNextClick = () =>{
+    isOpen.value = true
+}
 </script>
