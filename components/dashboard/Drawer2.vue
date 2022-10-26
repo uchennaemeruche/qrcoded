@@ -1,7 +1,22 @@
 <template >
-    <div>
-        <aside class="fixed top-0 left-0 w-64 h-full" aria-label="Sidenav">
-            <div
+    <div class="h-full fixed">
+
+        <!-- Sidebar first column -->
+        <!-- Backdrop -->
+        <!-- <div v-show="isSidebarOpen" @click="isSidebarOpen = false"
+            class="lg:hidden fixed inset-0 z-10 bg-indigo-800 " style="opacity: 0.5" aria-hidden="true">
+        </div> -->
+
+        <Transition v-show="isSidebarOpen" 
+            enter-class="transition-all transform duration-300 ease-in-out"
+            enter-from-class="-translate-x-full opacity-0"
+            enter-to-class="translate-x-0 opacity-100"
+            leave-class="transition-all transform duration-300 ease-in-out"
+            leave-from-class="translate-x-0 opacity-100"
+            leave-to-class="-translate-x-full opacity-0"
+            class="fixed inset-y-0 z-10 flex-shrink-0 top-0 left-0 w-full h-full" aria-label="Sidenav">
+            <div class="h-full " style="height: 100vh;" >
+                <div
                 class="overflow-y-auto py-12 px-3 h-full bg-white border-r border-gray-200 dark:bg-gray-800 dark:border-gray-700">
                 <ul class="space-y-2">
                     <li>
@@ -17,7 +32,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#"
+                        <NuxtLink to="/dashboard/create-code"
                             class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                             <svg aria-hidden="true"
                                 class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
@@ -27,7 +42,7 @@
                                 </path>
                             </svg>
                             <span class="ml-3">Create QRCode</span>
-                        </a>
+                        </NuxtLink>
                     </li>
                     <li>
                         <a href="#"
@@ -147,7 +162,7 @@
                     <div class="tooltip-arrow" data-popper-arrow></div>
                 </div>
                 <!-- Dropdown -->
-                <div>
+                <div class="block md:hidden">
                     <Menu as="div" class="relative inline-block text-left">
                         <div>
 
@@ -240,7 +255,8 @@
                     </Menu>
                 </div>
             </div>
-        </aside>
+            </div>
+        </Transition>
 
     </div>
 </template>
@@ -248,5 +264,7 @@
 import { Switch, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/vue'
 
 const { darkTheme, setDarkTheme } = useDarkTheme()
+const isSidebarOpen = useState<boolean>('isSidebarOpen')
+// const isSidebarOpen = ref(true)
 
 </script>
