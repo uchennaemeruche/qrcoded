@@ -225,15 +225,15 @@
                     <div class="fixed inset-0 bg-black bg-opacity-25" />
                 </TransitionChild>
 
-                <div class="fixed inset-0 overflow-y-auto">
+                <div class="fixed inset-0">
                     <div class="flex min-h-full items-center justify-center p-4 text-center">
                         <TransitionChild as="template" enter="duration-300 ease-out" enter-from="opacity-0 scale-95"
                             enter-to="opacity-100 scale-100" leave="duration-200 ease-in"
                             leave-from="opacity-100 scale-100" leave-to="opacity-0 scale-95">
                             <DialogPanel
-                                class="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+                                class="w-fit max-w-2xl transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
                                 <DialogTitle as="h1"
-                                    class="text-xl font-bold tracking-tight leading-tight text-gray-900">
+                                    class="text-xl font-bold tracking-tight leading-tight text-gray-900 mb-6">
                                     Create vCard Code
                                     <div class="mx-4 p-4">
                                         <div class="flex items-center">
@@ -293,8 +293,9 @@
                                     </div>
                                 </DialogTitle>
                                 <!-- <hr class="mt-2" /> -->
-                                <div class="mt-2">
-                                    <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+                                <div class="flex w-screen mt-2 h-72 overflow-y-auto overflow-x-hidden" id="wrapper">
+                                   
+                                    <div class="w-full p-6 space-y-4 md:space-y-6 sm:p-8" >
                                         <h1
                                             class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                                             Personal Details
@@ -348,15 +349,13 @@
                                                     class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                     placeholder="https://www.xyz.com" required="">
                                             </div>
-                                            <button type="submit"
+                                            <button @click="nextStep"
                                                 class="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
                                                 Next</button>
                                         </form>
                                     </div>
-                                    <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
-                                        
-                                    </div>
-                                    <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+                                    
+                                     <div class="w-full h-full w-full p-6 space-y-4 md:space-y-6 sm:p-8">
                                         <h1
                                             class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                                             Address
@@ -504,7 +503,13 @@ function closeModal() {
     isOpen.value = false
 }
 
-</script>
-<style lang="">
+const nextStep =() =>{
     
+}
+
+</script>
+<style lang="css">
+    #wrapper{
+       width:1300px; 
+    }
 </style>

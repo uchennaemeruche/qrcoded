@@ -1,7 +1,8 @@
 
 <template>
     <div class="flex flex-row" :class="darkTheme ? 'dark' : ''">
-       Hello there
+      <!-- <DashboardStepper/> -->
+      <Stepper/>
     </div>
 </template>
 
