@@ -1,11 +1,30 @@
 <template>
      <div class="bg-gray-900 h-screen p-10">
-        <StepperHeader :headers="stepHeaders"/>
-       <StepperItems :step-length="stepHeaders.length"/>
+        <StepperHeader :headers="stepHeaders">
+            <StepperStep :completed="completed" :current-step="currentStep" :index="0" step="Project N" />
+            <StepperStep :completed="completed" :current-step="currentStep" :index="1" step="Second Step" />
+            <StepperStep :completed="completed" :current-step="currentStep" :index="2" step="Final Step" />
+        </StepperHeader>
+       <StepperItems :step-length="stepHeaders.length">
+        <StepperContent :step-length="stepHeaders.length">
+            <div class="flex w-full mt-8">
+                <div class="w-full">Hello 1</div>
+            </div>
+            <div class="flex justify-between">
+                <button v-show="currentStep > 1" class="btn" @click="handleStep(currentStep - 1,false )">
+                    Previous
+                </button>
+                <button v-show="!completed" class="btn" @click="handleStep(currentStep + 1, true)">
+                    {{currentStep === stepHeaders.length ? 'Finish' : 'Next'}}
+                </button>
+            </div>
+        </StepperContent>
+    </StepperItems>
      </div>
 </template>
 <script setup>
 const stepHeaders = ['Personal Details', 'Address', 'Setup Config']
+const { currentStep, setCurrentStep, completed, setCompleted } = useStep(1, false)
 
 </script>
 <style lang="css">

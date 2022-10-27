@@ -1,5 +1,5 @@
 <template lang="">
-    <div class="step-header">
+    <div class="step-item step-header" :class="{'active': currentStep === index+1, 'complete': (i+1 < currentStep || completed)}">
         <div class="step">
             <svg v-if="((index+1) < currentStep || completed)" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                 stroke="currentColor" class="w-6 h-6">

@@ -1,16 +1,6 @@
 <template >
     <div class="bg-white">
-        <div class="flex w-full mt-8">
-            <div class="w-full">Hello 1</div>
-        </div>
-        <div class="flex justify-between">
-            <button v-show="currentStep > 1" class="btn" @click="handleStep(currentStep - 1,false )">
-                Previous
-            </button>
-            <button v-show="!completed" class="btn" @click="handleStep(currentStep + 1, true)">
-                {{currentStep === stepLength ? 'Finish' : 'Next'}}
-            </button>
-        </div>
+       <slot></slot>
     </div>
 </template>
 <script setup lang="ts">
