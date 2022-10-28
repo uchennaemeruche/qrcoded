@@ -1,27 +1,35 @@
 <template >
-    <div class="bg-white">
-       <slot></slot>
+    <div :ref="(el) => itemContent = el" class="content" :class="step === currentStep ? 'block' : 'hidden'">
+        STEP: {{step}}
+        Current: {{currentStep}}
+        <slot></slot>
     </div>
+   
 </template>
 <script setup lang="ts">
+const { currentStep, items } = useStep(1, false)
 
-const props = defineProps({
-    stepLength: Number
+const step = ref(0)
+
+const itemContent = ref(null)
+
+
+
+onMounted(() =>{
+      if(items.value){
+        const itemsLen = items.value.children.length
+        for(let i = 0; i < itemsLen; i++ ){
+            const item = items.value.children[i]
+            if(item === itemContent.value){
+                step.value = i +1
+            }
+        }
+      }
 })
-const {stepLength} = toRefs(props)
 
-const { currentStep, setCurrentStep, completed, setCompleted } = useStep(1, false)
-const handleStep = (step: number, isIncrement: boolean) => {
-    if(!isIncrement){
-        setCompleted(false)
-        setCurrentStep(step)
-    }else{
-        currentStep.value === stepLength.value
-            ? setCompleted(true)
-            : setCurrentStep(step)
-    }
-}
 </script>
-<style lang="">
-    
+<style lang="css">
+    .content{
+        width: 100%;
+    }
 </style>

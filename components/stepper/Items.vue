@@ -1,28 +1,17 @@
 <template lang="">
-    <div>
-       <slot></slot>
+
+    <div class="stepper-items" :ref="(el) =>{ setItems(el)}">
+        <slot ></slot>
     </div>
+   
 </template>
 <script setup lang="ts">
-const props = defineProps({
-    stepLength: Number
-})
-const { stepLength } = toRefs(props)
-
-
-const { currentStep, setCurrentStep, completed, setCompleted } = useStep(1, false)
-const handleStep = (step: number, isIncrement: boolean) => {
-    if (!isIncrement) {
-        setCompleted(false)
-        setCurrentStep(step)
-    } else {
-        currentStep.value === stepLength.value
-            ? setCompleted(true)
-            : setCurrentStep(step)
-    }
-}
+const { setItems } = useStep(1, false)
 
 </script>
-<style lang="">
-    
+<style lang="css">
+    .stepper-items{
+       
+       
+    }
 </style>
