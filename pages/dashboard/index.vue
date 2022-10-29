@@ -1,15 +1,32 @@
 
 <template>
-    <div class="flex flex-row" :class="darkTheme ? 'dark' : ''">
+    <div class="" :class="darkTheme ? 'dark' : ''" style="width:800px;">
       <!-- <DashboardStepper/> -->
       <Stepper v-slot="{steps, currentStep, completed, nextStep, previousStep }">
-        <StepperHeader>
+        <!-- <StepperHeader>
             <template v-for="(header, i) in stepHeaders" :key="i">
-                <StepperStep>
-                    <p class="text-gray-500">{{header}}</p>
-                    <template #step-icon></template>
-                </StepperStep>
+                    <StepperStep>
+                        <p class="text-gray-500">{{header}}</p>
+                        <template #step-icon></template>
+                    </StepperStep>
+                    <StepperDivider/>
             </template>
+        </StepperHeader> -->
+        <StepperHeader>
+            <StepperStep>
+                <p class="text-gray-500">{{stepHeaders[0]}}</p>
+                <template #step-icon></template>
+            </StepperStep>
+            <StepperDivider/>
+            <StepperStep>
+                <p class="text-gray-500 ">{{stepHeaders[1]}}</p>
+                <template #step-icon></template>
+            </StepperStep>
+            <StepperDivider/>
+            <StepperStep>
+                <p class="text-gray-500">{{stepHeaders[2]}}</p>
+                <template #step-icon></template>
+            </StepperStep>
         </StepperHeader>
         <StepperItems>
             <StepperContent>

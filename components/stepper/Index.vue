@@ -1,5 +1,5 @@
 <template>
-    <div class="w-[800px]">
+    <div>
         <slot 
             :steps="steps" 
             :nextStep="nextStep" 
@@ -8,20 +8,16 @@
             :completed="completed" 
             :headers="headers"
         />
-        
     </div>
 </template>
 <script setup lang="ts">
-
 const { currentStep, setCurrentStep, completed, setCompleted, headers } = useStep(1, false)
 const steps = ref(0)
 
-
 const nextStep = (step: number) => {
-        currentStep.value === steps.value
-            ? setCompleted(true)
-            : setCurrentStep(step ? step+1 : currentStep.value + 1)
-    
+    currentStep.value === steps.value
+        ? setCompleted(true)
+        : setCurrentStep(step ? step+1 : currentStep.value + 1)
 }
 
 const previousStep = (step: number) => {
@@ -30,23 +26,21 @@ const previousStep = (step: number) => {
 }
 
 onMounted(() =>{
-    steps.value =  headers.value.children.length
+    steps.value =  headers.value.length
 
 })
 
 
 </script>
 <style lang="css">
-.step-header {
-    @apply relative flex flex-col justify-center items-center w-full cursor-pointer;
-}
-
 .step-item {
-    @apply relative flex flex-col justify-center items-center w-full cursor-pointer;
+    @apply relative flex flex-col items-start justify-center cursor-pointer 
 }
-
-.step-item:not(:first-child):before {
-    @apply content-[''] bg-slate-200 absolute w-full h-[3px] right-1/2 top-1/3 -translate-y-2/4;
+.step-group{
+    @apply flex flex-col items-center 
+}
+.divider{
+    @apply flex-auto w-auto mt-4 h-1 transition duration-500 ease-in-out bg-slate-200 z-10
 }
 
 .step {
@@ -69,8 +63,8 @@ onMounted(() =>{
     @apply text-white
 }
 
-.complete:not(:first-child):before,
-.active:not(:first-child):before {
+.complete.divider{
     @apply bg-green-600
 }
+
 </style>

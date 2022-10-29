@@ -1,30 +1,39 @@
 <template>
-    <div :ref="(el) => itemContent = el" class="step-item step-header"
-        :class="{'active': currentStep === step, 'complete': (step < currentStep || completed)}">
-        <div class="step">
-            <svg v-if="((step) < currentStep || completed)" xmlns="http://www.w3.org/2000/svg" fill="none"
-                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-            </svg>
-            <slot v-else name="step-icon"><span>{{step}}</span></slot>
-           
+        <div :ref="(el) => itemContent = el" @click="goToStep(step)" class="step-item step-header"
+            :class="{'active': currentStep === step, 'complete': (step < currentStep || completed)}">
+            <div class="step-group">
+                <div class="step">
+                    <svg v-if="((step) < currentStep || completed)" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                    </svg>
+                    <slot v-else name="step-icon"><span>{{step}}</span></slot>
+                </div>
+                <div class="absolute top-0 text-center mt-12 w-32">
+                    <slot></slot>
+                </div>
+            </div>
         </div>
-        <slot></slot>
-    </div>
 </template>
 <script setup lang="ts">
-const { headers, completed, currentStep, } = useStep(1, false)
-
+const { headers, completed, currentStep, setCurrentStep, setCompleted } = useStep(1, false)
 
 const itemContent = ref(null)
 
-const step = ref(0)
+const step = ref(1)
+
+
+
+const goToStep = (step) => {
+    setCompleted(false)
+    setCurrentStep(step)
+}
 
 onMounted(() => {
     if (headers.value) {
-        const itemsLen = headers.value.children.length
+        const itemsLen = headers.value.length
         for (let i = 0; i < itemsLen; i++) {
-            const item = headers.value.children[i]
+            const item = headers.value[i]
             if (item === itemContent.value) {
                 step.value = i + 1
             }

@@ -1,19 +1,14 @@
-<template >
-    <div :ref="(el) => itemContent = el" class="content" :class="step === currentStep ? 'block' : 'hidden'">
-        STEP: {{step}}
-        Current: {{currentStep}}
+<template>
+    <div :ref="(el) => itemContent = el" class="content w-full" :class="step === currentStep ? 'block' : 'hidden'">
         <slot></slot>
     </div>
-   
 </template>
 <script setup lang="ts">
-const { currentStep, items } = useStep(1, false)
+const { currentStep, items, activeDivider} = useStep(1, false)
 
 const step = ref(0)
 
 const itemContent = ref(null)
-
-
 
 onMounted(() =>{
       if(items.value){
@@ -28,8 +23,3 @@ onMounted(() =>{
 })
 
 </script>
-<style lang="css">
-    .content{
-        width: 100%;
-    }
-</style>
