@@ -2,6 +2,196 @@
     <div class="flex flex-col w-full md:flex-row md:mx-12 lg:mx-0">
         <div class="column-3 w-full md:w-7/12 h-full mt-4 p-3 border-2 border-dashed md:mx-2 my-2 rounded-md">
             <div class="mx-auto w-full">
+
+                <Stepper v-slot="{currentStep, completed, nextStep, previousStep}" v-show="codeType == 'vCard'">
+            <div class="text-xl font-bold tracking-tight leading-tight text-gray-900 mb-6">
+                Create {codeType} code
+                <div class="p-4 mx-12">
+                    <StepperHeader>
+                        <StepperStep>
+                            <div class="text-teal-600 text-sm">
+                                {steps[0].text}
+                            </div>
+                            <template #step-icon>
+                                <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z">
+                                    </path>
+                                </svg>
+                            </template>
+                        </StepperStep>
+                        <StepperDivider />
+                        <StepperStep>
+                            <div class="text-sm text-teal-600">
+                                {{steps[1].text}}
+                            </div>
+                            <template #step-icon>
+                                <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <path
+                                        d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
+                                    </path>
+                                    <polyline points="22,6 12,13 2,6"></polyline>
+                                </svg>
+                            </template>
+                        </StepperStep>
+                        <StepperDivider />
+                        <StepperStep>
+                            <div class="text-sm text-teal-600">
+                                {{steps[2].text}}
+                            </div>
+                            <template #step-icon>
+                                <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+                                    <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
+                                    <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+                                </svg>
+                            </template>
+                        </StepperStep>
+                        <StepperDivider />
+                    </StepperHeader>
+                </div>
+            </div>
+            <!-- <hr class="mt-2" /> -->
+
+            <div class="h-[500px] overflow-y-auto">
+            <StepperItems>
+                <StepperContent>
+                    <div class="w-full p-6 space-y-4 md:space-y-6 sm:p-8">
+                        <h1
+                            class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-blue-900">
+                            Personal Details
+                        </h1>
+                        <form class="space-y-4 md:space-y-6" action="#">
+                            <div>
+                                <label for="fullname"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-blue-900">Your
+                                    Name</label>
+                                <input type="text" name="fullname" id="fullname" v-model="vCardState.fullname"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-blue-100 dark:border-blue-100 dark:placeholder-gray-600 dark:text-blue-900 dark:focus:ring-blue-100 dark:focus:border-blue-500"
+                                    placeholder="John Doe" required="">
+                            </div>
+
+                            <div>
+                                <label for="email"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-blue-900">Your
+                                    email</label>
+                                <input type="email" name="email" id="email" v-model="vCardState.email"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-blue-100 dark:border-blue-600 dark:placeholder-gray-600 dark:text-blue-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    placeholder="johndoe@company.com" required="">
+                            </div>
+                            <div>
+                                <label for="phone"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-blue-900">Phone</label>
+                                <input type="tel" name="phone" id="phone" v-model="vCardState.phone"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-blue-100 dark:border-blue-600 dark:placeholder-gray-600 dark:text-blue-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    placeholder="+2348 621 3932" required="">
+                            </div>
+                            <div>
+                                <label for="company"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-blue-900">Your
+                                    Company Name/Business Name</label>
+                                <input type="text" name="company" id="company" v-model="vCardState.company"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-blue-100 dark:border-blue-600 dark:placeholder-gray-600 dark:text-blue-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    placeholder="xyz Ltd." required="">
+                            </div>
+                            <div>
+                                <label for="job"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-blue-900">Your
+                                    Job/Role/Position</label>
+                                <input type="text" name="job" id="job" v-model="vCardState.role"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-blue-100 dark:border-blue-600 dark:placeholder-gray-600 dark:text-blue-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    placeholder="Managing Director" required="">
+                            </div>
+                            <div>
+                                <label for="website"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-blue-900">
+                                    Website</label>
+                                <input type="text" name="website" id="website" v-model="vCardState.website"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-blue-100 dark:border-blue-600 dark:placeholder-gray-600 dark:text-blue-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    placeholder="https://www.xyz.com" required="">
+                            </div>
+                            <button @click="nextStep(currentStep)"
+                                class="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
+                                Next</button>
+                        </form>
+                    </div>
+                </StepperContent>
+                <StepperContent>
+                    <div class="w-full h-full w-full p-6 space-y-4 md:space-y-6 sm:p-8">
+                        <h1
+                            class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-blue-900">
+                            Address
+                        </h1>
+                        <div>
+                            <label for="street"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-blue-900">Your
+                                Street</label>
+                            <input type="text" name="street" id="street"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-blue-100 dark:border-blue-600 dark:placeholder-gray-600 dark:text-blue-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                placeholder="No 32 St" required="">
+                        </div>
+                        <div>
+                            <label for="city"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-blue-900">Your
+                                City</label>
+                            <input type="text" name="city" id="city"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-blue-100 dark:border-blue-600 dark:placeholder-gray-600 dark:text-blue-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                placeholder="Yen" required="">
+                        </div>
+                        <div>
+                            <label for="state"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-blue-900">Your
+                                State</label>
+                            <input type="text" name="state" id="state"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-blue-100 dark:border-blue-600 dark:placeholder-gray-600 dark:text-blue-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                placeholder="BY" required="">
+                        </div>
+                        <div>
+                            <label for="zip"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-blue-900">Your
+                                Zip Code</label>
+                            <input type="text" name="zip" id="zip"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-blue-100 dark:border-blue-600 dark:placeholder-gray-600 dark:text-blue-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                placeholder="53532124" required="">
+                        </div>
+                        <div>
+                            <label for="country"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-blue-900">Your
+                                Country</label>
+                            <input type="text" name="country" id="country"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-blue-100 dark:border-blue-600 dark:placeholder-gray-600 dark:text-blue-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                placeholder="Nigeria" required="">
+                        </div>
+                    </div>
+                </StepperContent>
+                <StepperContent>
+                    <div class="w-full h-full w-full p-6 space-y-4 md:space-y-6 sm:p-8">
+                        <h1
+                            class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-blue-900">
+                            Third Content Here
+                        </h1>
+                    </div>
+                </StepperContent>
+            </StepperItems>
+            </div>
+            <div class="flex justify-between mt-4">
+                    <button type="button" v-show="currentStep > 1"
+                        class="inline-flex w-full mx-2 justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                        @click="previousStep(currentStep)">
+                        Previous
+                    </button>
+                    <button type="button" v-show="!completed"
+                        class="inline-flex w-full mx-2 justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                        @click="nextStep(currentStep)">
+                        Next
+                    </button>
+            </div>
+        </Stepper>
                
                 <WebsiteQrCode/>
                
@@ -218,160 +408,6 @@ const route = useRoute()
 
 const codeType = ref(route.query.codeType ? route.query.codeType : '')
 
-const VCard = defineComponent(() =>{
-    const state = reactive({
-
-    })
-    return () => (
-        <Stepper  v-show="codeType == 'vCard'">
-            <div class="text-xl font-bold tracking-tight leading-tight text-gray-900 mb-6">
-                Create {codeType} code
-                <div class="p-4 mx-12">
-                    <StepperHeader>
-                        <StepperStep>
-                            <div class="text-teal-600 text-sm">
-                                {steps[0].text}
-                            </div>
-                        </StepperStep>
-                        <StepperDivider />
-                        <StepperStep>
-                            <div class="text-sm text-teal-600">
-                                {steps[1].text}
-                            </div>
-                        </StepperStep>
-                        <StepperDivider />
-                        <StepperStep>
-                            <div class="text-sm text-teal-600">
-                                {steps[2].text}
-                            </div>
-                        </StepperStep>
-                        <StepperDivider />
-                    </StepperHeader>
-                </div>
-            </div>
-
-            <div class="h-[500px] overflow-y-auto">
-            <StepperItems>
-                <StepperContent>
-                    <div class="w-full p-6 space-y-4 md:space-y-6 sm:p-8">
-                        <h1
-                            class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-blue-900">
-                            Personal Details
-                        </h1>
-                        <form class="space-y-4 md:space-y-6" action="#">
-                            <div>
-                                <label for="fullname"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-blue-900">Your
-                                    Name</label>
-                                <input type="text" name="fullname" id="fullname" v-model={vCardState.fullname}
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-blue-100 dark:border-blue-100 dark:placeholder-gray-600 dark:text-blue-900 dark:focus:ring-blue-100 dark:focus:border-blue-500"
-                                    placeholder="John Doe" required="true"/>
-                            </div>
-
-                            <div>
-                                <label for="email"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-blue-900">Your
-                                    email</label>
-                                <input type="email" name="email" id="email" v-model={vCardState.email}
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-blue-100 dark:border-blue-600 dark:placeholder-gray-600 dark:text-blue-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    placeholder="johndoe@company.com" required="true"/>
-                            </div>
-                            <div>
-                                <label for="phone"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-blue-900">Phone</label>
-                                <input type="tel" name="phone" id="phone" v-model={vCardState.phone}
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-blue-100 dark:border-blue-600 dark:placeholder-gray-600 dark:text-blue-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    placeholder="+2348 621 3932" required="true"/>
-                            </div>
-                            <div>
-                                <label for="company"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-blue-900">Your
-                                    Company Name/Business Name</label>
-                                <input type="text" name="company" id="company" v-model={vCardState.company}
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-blue-100 dark:border-blue-600 dark:placeholder-gray-600 dark:text-blue-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    placeholder="xyz Ltd." required="true"/>
-                            </div>
-                            <div>
-                                <label for="job"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-blue-900">Your
-                                    Job/Role/Position</label>
-                                <input type="text" name="job" id="job" v-model={vCardState.role}
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-blue-100 dark:border-blue-600 dark:placeholder-gray-600 dark:text-blue-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    placeholder="Managing Director" required="true"/>
-                            </div>
-                            <div>
-                                <label for="website"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-blue-900">
-                                    Website</label>
-                                <input type="text" name="website" id="website" v-model={vCardState.website}
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-blue-100 dark:border-blue-600 dark:placeholder-gray-600 dark:text-blue-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    placeholder="https://www.xyz.com" required="true"/>
-                            </div>
-                        </form>
-                    </div>
-                </StepperContent>
-                <StepperContent>
-                    <div class="w-full h-full w-full p-6 space-y-4 md:space-y-6 sm:p-8">
-                        <h1
-                            class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-blue-900">
-                            Address
-                        </h1>
-                        <div>
-                            <label for="street"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-blue-900">Your
-                                Street</label>
-                            <input type="text" name="street" id="street"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-blue-100 dark:border-blue-600 dark:placeholder-gray-600 dark:text-blue-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="No 32 St" required="true"/>
-                        </div>
-                        <div>
-                            <label for="city"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-blue-900">Your
-                                City</label>
-                            <input type="text" name="city" id="city"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-blue-100 dark:border-blue-600 dark:placeholder-gray-600 dark:text-blue-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="Yen" required="true" />
-                        </div>
-                        <div>
-                            <label for="state"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-blue-900">Your
-                                State</label>
-                            <input type="text" name="state" id="state"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-blue-100 dark:border-blue-600 dark:placeholder-gray-600 dark:text-blue-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="BY" required="true" />
-                        </div>
-                        <div>
-                            <label for="zip"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-blue-900">Your
-                                Zip Code</label>
-                            <input type="text" name="zip" id="zip"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-blue-100 dark:border-blue-600 dark:placeholder-gray-600 dark:text-blue-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="53532124" required="true" />
-                        </div>
-                        <div>
-                            <label for="country"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-blue-900">Your
-                                Country</label>
-                            <input type="text" name="country" id="country"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-blue-100 dark:border-blue-600 dark:placeholder-gray-600 dark:text-blue-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="Nigeria" required="true" />
-                        </div>
-                    </div>
-                </StepperContent>
-                <StepperContent>
-                    <div class="w-full h-full w-full p-6 space-y-4 md:space-y-6 sm:p-8">
-                        <h1
-                            class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-blue-900">
-                            Third Content Here
-                        </h1>
-                    </div>
-                </StepperContent>
-            </StepperItems>
-            </div>
-        </Stepper>
-    )
-})
-
 const WebsiteQrCode = defineComponent(() => {
     const state = reactive({
         url: ''
@@ -395,19 +431,19 @@ const WebsiteQrCode = defineComponent(() => {
                     </StepperHeader>
                     <StepperItems>
                         <StepperContent>
-                            <form class="space-y-4 md:space-y-6 mt-16">
+                            <form class="space-y-4 md:space-y-6" action="#">
                                 <div>
-                                    <label for="website"
+                                    <label for="fullname"
                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-blue-900">
-                                        Website URL</label>
-                                    <input type="text" name="website" id="website" v-model={state.url}
+                                        Your Website URL</label>
+                                    <input type="text" name="fullname" id="fullname" v-model={state.url}
                                         class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-blue-100 dark:border-blue-100 dark:placeholder-gray-400 dark:text-blue-900 dark:focus:ring-blue-100 dark:focus:border-blue-500"
                                         placeholder="www.mywebsite.com" required="true" />
                                 </div>
                             
                                 <button onClick={() => alert("Generating")}
                                     class="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
-                                    Next
+                                    Generate Code
                                 </button>
                             </form>
                         </StepperContent>
