@@ -3,7 +3,7 @@
         <div class="column-3 w-full md:w-7/12 h-full mt-4 p-3 border-2 border-dashed md:mx-2 my-2 rounded-md">
             <div class="mx-auto w-full">
                 <RadioGroup v-model="selected">
-                    <RadioGroupLabel class="sr-only">Server size</RadioGroupLabel>
+                    <RadioGroupLabel class="sr-only">qrcode type</RadioGroupLabel>
                     <div class="space-y-2 flex flex-wrap ">
                         <RadioGroupOption as="template" v-for="code in qrcodeTypes" :key="code.type" :value="code"
                             v-slot="{ active, checked }">
@@ -63,8 +63,10 @@
                                     stroke-linejoin="round">
                                 </path>
                             </svg>
-                            <p><span class="" style="color:#06B6D4">Qr</span><span
-                                    class="text-white text-center">Codify</span></p>
+                            <p>
+                                <span class="" style="color:#06B6D4">Qr</span>
+                                <span class="text-white text-center">Codify</span>
+                            </p>
 
                             <!-- <svg viewBox="0 0 79 24" fill="none" aria-hidden="true" class="h-6 flex-none">
                                             <path

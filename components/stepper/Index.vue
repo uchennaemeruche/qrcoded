@@ -40,11 +40,15 @@ onMounted(() =>{
     @apply flex flex-col items-center 
 }
 .divider{
-    @apply flex-auto w-auto mt-4 h-1 transition duration-500 ease-in-out bg-slate-200 z-10
+    @apply flex-auto w-auto mt-4 h-1 transition duration-500 ease-in-out bg-slate-200
+}
+
+.header .step-item + .divider:last-of-type{
+    @apply hidden
 }
 
 .step {
-    @apply w-10 h-10 flex items-center justify-center z-10 relative bg-slate-700 rounded-full font-semibold text-white
+    @apply w-10 h-10 flex items-center justify-center relative bg-slate-700 rounded-full font-semibold text-white
 }
 
 .btn {

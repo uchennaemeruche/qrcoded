@@ -1,7 +1,6 @@
 <template>
-    <div class="flex justify-between" :ref="(el) => {updateHeaders(el)}">
+    <div class="header flex justify-between" :ref="(el) => {updateHeaders(el)}">
         <slot></slot>
-        <!-- <slot name="divider"></slot> -->
     </div>
 </template>
 <script setup>
@@ -15,5 +14,4 @@ const updateHeaders = (el) => {
 
 </script>
 <style lang="css">
-
 </style>

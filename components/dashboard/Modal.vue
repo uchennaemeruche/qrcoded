@@ -64,6 +64,7 @@
                                                     </svg>
                                                 </template>
                                             </StepperStep>
+                                            <StepperDivider />
                                         </StepperHeader>
                                     </div>
                                 </DialogTitle>
