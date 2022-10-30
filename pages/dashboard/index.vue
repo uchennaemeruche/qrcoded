@@ -11,41 +11,58 @@
                               active
                                 ? ''
                                 : '',
-                              checked ? 'bg-blue-100 text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 ' : 'bg-white ',
+                              checked ? ' bg-blue-100 text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 ' : 'h-24 bg-white ',
                             ]"
-                                class="relative cursor-pointer rounded-lg w-72 h-24 mt-2 mx-auto px-4 py-4 shadow-md focus:outline-none">
-                                <div class="flex w-full items-center justify-between">
-                                    <div class="flex items-center space-x-4">
-                                        <svg width="29.983px" height="29.983px" :fill="code.color"
-                                            :viewBox="code.viewBox" xmlns="http://www.w3.org/2000/svg">
-                                            <path :d="code.path" />
-                                        </svg>
-                                        <div class="flex items-center">
-                                            <div class="text-sm">
-                                                <RadioGroupLabel as="p"
-                                                    :class="checked ? 'text-blue-900' : 'text-gray-900'"
-                                                    class="font-medium">
-                                                    {{ code.type }}
-                                                </RadioGroupLabel>
-                                                <RadioGroupDescription as="span"
-                                                    :class="checked ? 'text-blue-100' : 'text-gray-500'" class="inline">
-                                                    <span>{{ code.description }}</span>
-                                                </RadioGroupDescription>
+                                class="relative cursor-pointer rounded-lg w-72 mt-2 mx-auto px-4 py-4 shadow-md focus:outline-none">
+                                
+                                <div class="flex flex-col">
+
+                                    <div class="flex w-full items-center justify-between">
+                                        <div class="flex items-center space-x-4">
+                                            <svg width="29.983px" height="29.983px" :fill="code.color"
+                                                :viewBox="code.viewBox" xmlns="http://www.w3.org/2000/svg">
+                                                <path :d="code.path" />
+                                            </svg>
+                                            <div class="flex items-center">
+                                                <div class="text-sm">
+                                                    <RadioGroupLabel as="p"
+                                                        :class="checked ? 'text-blue-900' : 'text-gray-900'"
+                                                        class="font-medium">
+                                                        {{ code.type }}
+                                                    </RadioGroupLabel>
+                                                    <RadioGroupDescription as="span"
+                                                        :class="checked ? 'text-blue-900' : 'text-gray-500'" class="inline">
+                                                        <span>{{ code.description }}</span>
+                                                    </RadioGroupDescription>
+                                                    
+                                                </div>
                                             </div>
                                         </div>
+    
+                                        <div v-show="checked" class="shrink-0 text-white">
+                                            <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none">
+                                                <circle cx="12" cy="12" r="12" fill="#fff" fill-opacity="0.2" />
+                                                <path d="M7 13l3 3 7-7" stroke="#fff" stroke-width="1.5"
+                                                    stroke-linecap="round" stroke-linejoin="round" />
+                                            </svg>
+                                        </div>
                                     </div>
-
-                                    <div v-show="checked" class="shrink-0 text-white">
-                                        <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none">
-                                            <circle cx="12" cy="12" r="12" fill="#fff" fill-opacity="0.2" />
-                                            <path d="M7 13l3 3 7-7" stroke="#fff" stroke-width="1.5"
-                                                stroke-linecap="round" stroke-linejoin="round" />
+                                    <button type="button" v-show="checked"
+                                        class="inline-flex w-full mt-2 justify-center items-center space-x-2 rounded-md border border-transparent bg-white px-4 py-2 text-sm font-medium text-blue-900 hover:bg-white focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                                        @click="createQrCode(code)">
+                                        <span>Next</span>
+                                        <svg class="w-8 fill-blue-900" viewBox="0 0 512 512">
+                                            <polygon
+                                                points="359.873 121.377 337.246 144.004 433.243 240.001 16 240.001 16 240.002 16 272.001 16 272.002 433.24 272.002 337.246 367.996 359.873 390.623 494.498 256 359.873 121.377"
+                                                class="ci-primary" />
                                         </svg>
-                                    </div>
+                                    </button>
                                 </div>
                             </div>
+                            
                         </RadioGroupOption>
                     </div>
+                    
                 </RadioGroup>
             </div>
         </div>
@@ -298,6 +315,8 @@ const qrcodeTypes = [
         path: '160 GB SSD disk',
     },
 ]
+
+const router = useRouter()
 const selected = ref(qrcodeTypes[0])
 const typeSelected = useState('typeSelected', () => selected >= 0)
 const isOpen = useState('isOpen')
@@ -306,8 +325,12 @@ function closeModal() {
     isOpen.value = false
 }
 
-const nextStep =() =>{
-    
+const createQrCode = (code) =>{
+    // isOpen.value = true
+    router.push({
+        path: '/dashboard/create-code',
+        query: {codeType: code.type}
+    })
 }
 
 </script>

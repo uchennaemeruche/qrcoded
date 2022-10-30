@@ -21,7 +21,7 @@
                                 <!-- <a v-for="item in navigation" :key="item.name" :href="item.href"
                                     :class="[item.current ? 'bg-skyblue text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white', 'px-3 py-2 rounded-md text-sm font-medium']"
                                     :aria-current="item.current ? 'page' : undefined">{{ item.name }}</a> -->
-                                <button @click="handleNextClick" class="flex items-center space-x-2 bg-blue-100 text-blue-900 px-3 py-2 rounded-md text-sm font-medium"
+                                <!-- <button @click="handleNextClick" class="flex items-center space-x-2 bg-blue-100 text-blue-900 px-3 py-2 rounded-md text-sm font-medium"
                                     aria-current="page">
                                     <span>Next</span>
 
@@ -30,7 +30,7 @@
                                             points="359.873 121.377 337.246 144.004 433.243 240.001 16 240.001 16 240.002 16 272.001 16 272.002 433.24 272.002 337.246 367.996 359.873 390.623 494.498 256 359.873 121.377"
                                             class="ci-primary" />
                                     </svg>
-                                </button>
+                                </button> -->
                             </div>
                         
                     </div>

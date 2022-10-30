@@ -2,9 +2,9 @@
     <div class="flex flex-col w-full md:flex-row md:mx-12 lg:mx-0">
         <div class="column-3 w-full md:w-7/12 h-full mt-4 p-3 border-2 border-dashed md:mx-2 my-2 rounded-md">
             <div class="mx-auto w-full">
-                <Stepper v-slot="{currentStep, completed, nextStep, previousStep}">
+                <Stepper v-slot="{currentStep, completed, nextStep, previousStep}" v-show="codeType == 'vCard'">
                                 <div class="text-xl font-bold tracking-tight leading-tight text-gray-900 mb-6">
-                                    Create New vCard
+                                    Create {{codeType}} code
                                     <div class="p-4 mx-12">
                                         <StepperHeader>
                                             <StepperStep>
@@ -190,7 +190,12 @@
                                          Next
                                      </button>
                                 </div>
-                            </Stepper>
+                </Stepper>
+
+                
+                <WebsiteQrCode/>
+               
+               
             </div>
         </div>
         <div class="column-2 w-full md:w-4/12 h-full mt-4 p-3 border border-dashed md:mx-2 my-2 rounded-md ">
@@ -352,11 +357,13 @@
             </div>
         </div>
 
+        
+
 
         <DashboardModal/>
     </div>
 </template>
-<script setup>
+<script setup lang="tsx">
 import {
     RadioGroup,
     RadioGroupLabel,
@@ -372,11 +379,11 @@ import {
 const vCardState = reactive({
     fullname: "",
     email: "",
+    phone: "",
+    company:"",
     role: "",
     website: "",
     address: "",
-    phone: "",
-    company:"",
 
 })
 const createVCard = () =>{
@@ -386,8 +393,8 @@ const createVCard = () =>{
     `
 }
 
-
 const isOpen = useState('isOpen')
+
 
 const steps = [
     {
@@ -405,9 +412,56 @@ function closeModal() {
     isOpen.value = false
 }
 
-const nextStep =() =>{
-    
+
+const route = useRoute()
+
+const codeType = ref(route.query.codeType ? route.query.codeType : '')
+
+const WebsiteQrCodeCreator = () => {
+    const html = `<div class="text-xl font-bold tracking-tight leading-tight text-gray-900 mb-6">
+            Create ${codeType.value} code
+            <div class="w-full p-6 space-y-4 md:space-y-6 sm:p-8">
+                <h1
+                    class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-blue-900">
+                    Personal Details
+                </h1>
+                <form class="space-y-4 md:space-y-6" action="#">
+                    <div>
+                        <label for="fullname"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-blue-900">
+                            Your Website URL</label>
+                        <input type="text" name="fullname" id="fullname" v-model="state.url"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-blue-100 dark:border-blue-100 dark:placeholder-gray-200 dark:text-blue-900 dark:focus:ring-blue-100 dark:focus:border-blue-500"
+                            placeholder="www.mywebsite.com" required="" />
+                    </div>
+                </form>
+            </div>
+        </div>`
+    return h('div', {class: 'bew', innerHTML: html })
 }
+
+const WebsiteQrCode = defineComponent(() => {
+  return () => <div class="text-xl font-bold tracking-tight leading-tight text-gray-900 mb-6">
+            Create ${codeType.value} code
+            <div class="w-full p-6 space-y-4 md:space-y-6 sm:p-8">
+                <h1
+                    class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-blue-900">
+                    Personal Details
+                </h1>
+                <form class="space-y-4 md:space-y-6" action="#">
+                    <div>
+                        <label for="fullname"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-blue-900">
+                            Your Website URL</label>
+                        <input type="text" name="fullname" id="fullname"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-blue-100 dark:border-blue-100 dark:placeholder-gray-400 dark:text-blue-900 dark:focus:ring-blue-100 dark:focus:border-blue-500"
+                            placeholder="www.mywebsite.com" required="true" />
+                    </div>
+                </form>
+            </div>
+        </div>
+})
+
 
 </script>
 <style lang="css">
