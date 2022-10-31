@@ -1,0 +1,120 @@
+<template>
+    <div class="w-full">
+        <div
+            class="p-4 w-full  bg-white rounded-lg border shadow-md sm:p-8 dark:bg-gray-800 dark:border-gray-700">
+            <div class="flex justify-between items-center mb-4">
+                <h5 class="text-xl font-bold leading-none text-gray-900 dark:text-white">Customize QRCode Colors</h5>
+                <svg fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" class="w-6 h-6 fill-gray-100">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+            </div>
+            <div class="flow-root">
+                <ul role="list" class="divide-y divide-gray-200 dark:divide-gray-700">
+                    <li class="py-3 sm:py-4">
+                        <h6 class="text-xl font-normal leading-none text-gray-900 dark:text-white mb-2">Background color</h6>
+                        <div class="flex items-center space-x-4 h-[35px] w-full" v-show="!transparentBackground">
+                            <div class="w-4/5 h-full">
+                                <input class="color-holder" v-model="backgroundColor">
+                            </div>
+                            <div class="h-full w-1/5">
+                                <input type="color" class="h-full w-full" v-model="backgroundColor"
+                                style="border: 0.1rem solid rgb(227, 236, 242); background: rgb(255, 255, 255);">
+                            </div>
+                        </div>
+                        <a class="inline-flex space-x-4 justify-center items-center py-2 text-gray-500 rounded cursor-pointer ">
+                            <Switch v-model="transparentBackground" :class="transparentBackground ? 'bg-blue-600' : 'bg-gray-300'"
+                                class="relative inline-flex h-5 w-11 items-center rounded-full">
+                                <span class="sr-only">Transparent background</span>
+                                <span :class="transparentBackground ? 'translate-x-6' : 'translate-x-1'"
+                                    class="inline-block h-4 w-4 transform rounded-full bg-white transition" />
+                            </Switch>
+                            <h6 class="text-lg font-normal text-gray-900 dark:text-gray-300">Transparent background</h6>
+                         </a>
+                    </li>
+                    <li class="py-3 sm:py-4">
+                        <h6 class="text-xl font-normal leading-none text-gray-900 dark:text-white mb-2">Dots color</h6>
+                        <div class="flex items-center space-x-4 h-[35px] w-full" v-show="!isGradientDots">
+                            <div class="w-4/5 h-full">
+                                <input class="color-holder" v-model="dotsColor">
+                            </div>
+                            <div class="h-full w-1/5">
+                                <input type="color" class="h-full w-full" v-model="dotsColor"
+                                style="border: 0.1rem solid rgb(227, 236, 242); background: rgb(255, 255, 255);">
+                            </div>
+                        </div>
+                        <a class="inline-flex space-x-4 justify-center items-center py-2 text-gray-500 rounded cursor-pointer ">
+                            <Switch v-model="isGradientDots" :class="isGradientDots ? 'bg-blue-600' : 'bg-gray-300'"
+                                class="relative inline-flex h-5 w-11 items-center rounded-full">
+                                <span class="sr-only">Gradient dots</span>
+                                <span :class="isGradientDots ? 'translate-x-6' : 'translate-x-1'"
+                                    class="inline-block h-4 w-4 transform rounded-full bg-white transition" />
+                            </Switch>
+                            <h6 class="text-lg font-normal text-gray-900 dark:text-gray-300">Gradient</h6>
+                         </a>
+                    </li>
+                    <li class="py-3 sm:py-4">
+                        <h6 class="text-xl font-normal leading-none text-gray-900 dark:text-white mb-2">Marker border color</h6>
+                        <div class="flex items-center space-x-4 h-[35px] w-full">
+                            <div class="w-4/5 h-full">
+                                <input class="color-holder" v-model="markerBorderColor">
+                            </div>
+                            <div class="h-full w-1/5">
+                                <input type="color" class="h-full w-full" v-model="markerBorderColor"
+                                style="border: 0.1rem solid rgb(227, 236, 242); background: rgb(255, 255, 255);">
+                            </div>
+                        </div>
+                    </li>
+                    <li class="py-3 sm:py-4">
+                        <h6 class="text-xl font-normal leading-none text-gray-900 dark:text-white mb-2">Marker center color</h6>
+                        <div class="flex items-center space-x-4 h-[35px] w-full">
+                            <div class="w-4/5 h-full">
+                                <input class="color-holder" v-model="markerCenterColor">
+                            </div>
+                            <div class="h-full w-1/5">
+                                <input type="color" class="h-full w-full" v-model="markerCenterColor"
+                                style="border: 0.1rem solid rgb(227, 236, 242); background: rgb(255, 255, 255);">
+                            </div>
+                        </div>
+                    </li>
+                   
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+</template>
+<script setup>
+import { Switch } from '@headlessui/vue'
+
+const backgroundColor = ref('#FFFFFF')
+const transparentBackground = ref(false)
+
+const dotsColor = ref('#000000')
+const isGradientDots = ref(false)
+
+const markerBorderColor = ref('#000000')
+
+const markerCenterColor = ref('#000000')
+
+
+</script>
+<style lang="css">
+.color-card {
+    border: 0.1rem solid rgb(227, 236, 242) !important;
+    position: relative;
+    transition: all 0.2s ease 0s;
+    box-shadow: rgba(42, 53, 79, 0.05) 0px 1.5rem 4rem !important;
+}
+
+
+.color-holder{
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 4px 30px; border-radius: unset; display: inline-block;
+    @apply h-full w-full p-2.5 bg-gray-200 text-lg font-normal text-gray-600 
+}
+
+/* .card-body{
+        flex: 1 1 auto;
+        padding: 1.5rem;
+    } */
+</style>

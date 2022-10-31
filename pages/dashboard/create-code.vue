@@ -2,8 +2,7 @@
     <div class="flex flex-col w-full md:flex-row md:mx-12 lg:mx-0">
         <div class="column-3 w-full md:w-7/12 h-full mt-4 p-3 border-2 border-dashed md:mx-2 my-2 rounded-md">
             <div class="mx-auto w-full">
-                <WebsiteQrCode/>
-                <QrcodeSize/>
+                <WebsiteQrCode />
             </div>
         </div>
         <div class="column-2 w-full md:w-4/12 h-full mt-4 p-3 border border-dashed md:mx-2 my-2 rounded-md ">
@@ -33,98 +32,36 @@
                         </div>
                         <div class="display-content w-full flex flex-col hidden">
                             <div class="mt-16 px-4 text-white flex flex-col mx-auto itemx-center">
-                            <div class="text-2xl text-white">
-                                <img class="h-18 w-18 rounded-full"
-                                    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                                    alt="">
-
-                            </div>
-                            <div class="text-sm text-gray-500 text-center mt-4">
-                                <p class="text-white text-lg">{{vCardState.fullname || 'John Doe'}}</p>
-                                <p class="text-white">{{vCardState.role || 'Software Engineer'}}</p>
-
-                            </div>
-                        </div>
-                        <div class="bg-gray-800 rounded-2xl w-full mt-4">
-                            <div class="flex items-center justify-between px-6 py-2">
-                                <div class="flex flex-col items-center">
-                                    <div class="w-6 h-6 bg-skyblue">
-                                        <svg class="text-white bg-white" focusable="false" viewBox="0 0 24 24"
-                                            aria-hidden="true" style="font-size: 24px;">
-                                            <path
-                                                d="M16.18,21.3a5,5,0,0,1-3.53-1.46L4.16,11.35a5,5,0,0,1,0-7.07l.71-.7a3,3,0,0,1,4.24,0L11.23,5.7a3,3,0,0,1,0,4.24l-.6.6,2.83,2.83.6-.6a3,3,0,0,1,4.24,0l2.12,2.12a3,3,0,0,1,0,4.24l-.7.71A5,5,0,0,1,16.18,21.3ZM7,4.7A1,1,0,0,0,6.28,5l-.7.71a3,3,0,0,0,0,4.24l8.48,8.48a3,3,0,0,0,4.24,0l.71-.7a1,1,0,0,0,0-1.42l-2.12-2.12a1,1,0,0,0-1.42,0l-2,2L7.8,10.54l2-2a1,1,0,0,0,0-1.42L7.7,5A1,1,0,0,0,7,4.7Z">
-                                            </path>
-                                        </svg>
-                                    </div>
-                                    <p class="text-gray-500">Call</p>
+                                <div class="text-2xl text-white">
+                                    <img class="h-18 w-18 rounded-full"
+                                        src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                                        alt="">
 
                                 </div>
-                                <div class="flex flex-col items-center">
-                                    <div class="w-6 h-6 bg-skyblue">
-                                        <svg class="text-white bg-white" focusable="false" viewBox="0 0 24 24"
-                                            aria-hidden="true" style="font-size: 24px;">
-                                            <path
-                                                d="M19,4H5A3,3,0,0,0,2,7V17a3,3,0,0,0,3,3H19a3,3,0,0,0,3-3V7A3,3,0,0,0,19,4Zm0,2h0l-5.84,5a1.89,1.89,0,0,1-2.34,0L5,6H19Zm0,12H5a1,1,0,0,1-1-1V7.79L9.53,12.5a3.91,3.91,0,0,0,4.94,0L20,7.79V17A1,1,0,0,1,19,18Z">
-                                            </path>
-                                            <path
-                                                d="M7.29,13.29l-2,2a1,1,0,0,0,0,1.42,1,1,0,0,0,1.42,0l2-2a1,1,0,0,0-1.42-1.42Z">
-                                            </path>
-                                            <path
-                                                d="M16.71,13.29a1,1,0,0,0-1.42,1.42l2,2a1,1,0,0,0,1.42,0,1,1,0,0,0,0-1.42Z">
-                                            </path>
-                                        </svg>
-                                    </div>
-                                    <p class="text-gray-500">Email</p>
-
-                                </div>
-                                <div class="flex flex-col items-center">
-                                    <div class="w-6 h-6 bg-skyblue">
-                                        <svg class="text-white bg-white" focusable="false" viewBox="0 0 24 24"
-                                            aria-hidden="true" style="font-size: 24px;">
-                                            <path
-                                                d="M12,21a1,1,0,0,1-.41-.09C11.28,20.77,4,17.4,4,11.28V11a8,8,0,0,1,16,0,.66.66,0,0,1,0,.14.66.66,0,0,1,0,.14c0,6.12-7.28,9.49-7.59,9.63A1,1,0,0,1,12,21ZM12,5a6,6,0,0,0-6,6v.1s0,.12,0,.15c0,4.14,4.58,6.88,6,7.63,1.42-.75,6-3.5,6-7.6,0,0,0-.16,0-.18s0-.09,0-.1h0A6,6,0,0,0,12,5Z">
-                                            </path>
-                                            <path
-                                                d="M12,15a4,4,0,1,1,4-4A4,4,0,0,1,12,15Zm0-6a2,2,0,1,0,2,2A2,2,0,0,0,12,9Z">
-                                            </path>
-                                        </svg>
-                                    </div>
-                                    <p class="text-gray-500">Location</p>
+                                <div class="text-sm text-gray-500 text-center mt-4">
+                                    <p class="text-white text-lg">{{vCardState.fullname || 'John Doe'}}</p>
+                                    <p class="text-white">{{vCardState.role || 'Software Engineer'}}</p>
 
                                 </div>
                             </div>
-                        </div>
-                        <div class="mt-6 flex-auto rounded-t-2xl bg-white">
-                            <div class="px-4 py-6">
-                                <div class="space-y-6">
-                                    <!-- <div>
-                                        <div class="text-sm text-gray-500">Email address</div>
-                                        <div class="mt-2 border-b border-gray-200 pb-2 text-sm text-gray-900">
-                                            uchenna@gmail.com</div>
-                                    </div> -->
-                                    <div>
-                                        <div class="text-sm text-gray-500">Website</div>
-                                        <a href="https://uchennaemeruche.com"
-                                            class="mt-2 border-b border-gray-200 pb-2 text-sm text-gray-900">
-                                            {{vCardState.website || 'https://uchennaemeruche.com'}}
-                                        </a>
-                                    </div>
-                                    <div>
-                                        <div class="text-sm text-gray-500">Address</div>
-                                        <div class="mt-2 border-b border-gray-200 pb-2 text-sm text-gray-900">
-                                           {{vCardState.address || 'Ukay Cresent, Off EUK, 112'}}</div>
-                                    </div>
-                                    <div>
-                                        <div class="text-sm text-gray-500">Socials</div>
-                                        <div class="flex items-center justify-between px-6 py-2">
-                                            <svg class="text-white bg-white w-8 h-8" focusable="false"
-                                                viewBox="0 0 24 24" aria-hidden="true" style="font-size: 24px;">
+                            <div class="bg-gray-800 rounded-2xl w-full mt-4">
+                                <div class="flex items-center justify-between px-6 py-2">
+                                    <div class="flex flex-col items-center">
+                                        <div class="w-6 h-6 bg-skyblue">
+                                            <svg class="text-white bg-white" focusable="false" viewBox="0 0 24 24"
+                                                aria-hidden="true" style="font-size: 24px;">
                                                 <path
                                                     d="M16.18,21.3a5,5,0,0,1-3.53-1.46L4.16,11.35a5,5,0,0,1,0-7.07l.71-.7a3,3,0,0,1,4.24,0L11.23,5.7a3,3,0,0,1,0,4.24l-.6.6,2.83,2.83.6-.6a3,3,0,0,1,4.24,0l2.12,2.12a3,3,0,0,1,0,4.24l-.7.71A5,5,0,0,1,16.18,21.3ZM7,4.7A1,1,0,0,0,6.28,5l-.7.71a3,3,0,0,0,0,4.24l8.48,8.48a3,3,0,0,0,4.24,0l.71-.7a1,1,0,0,0,0-1.42l-2.12-2.12a1,1,0,0,0-1.42,0l-2,2L7.8,10.54l2-2a1,1,0,0,0,0-1.42L7.7,5A1,1,0,0,0,7,4.7Z">
                                                 </path>
                                             </svg>
-                                            <svg class="text-white bg-white w-8 h-8" focusable="false"
-                                                viewBox="0 0 24 24" aria-hidden="true" style="font-size: 24px;">
+                                        </div>
+                                        <p class="text-gray-500">Call</p>
+
+                                    </div>
+                                    <div class="flex flex-col items-center">
+                                        <div class="w-6 h-6 bg-skyblue">
+                                            <svg class="text-white bg-white" focusable="false" viewBox="0 0 24 24"
+                                                aria-hidden="true" style="font-size: 24px;">
                                                 <path
                                                     d="M19,4H5A3,3,0,0,0,2,7V17a3,3,0,0,0,3,3H19a3,3,0,0,0,3-3V7A3,3,0,0,0,19,4Zm0,2h0l-5.84,5a1.89,1.89,0,0,1-2.34,0L5,6H19Zm0,12H5a1,1,0,0,1-1-1V7.79L9.53,12.5a3.91,3.91,0,0,0,4.94,0L20,7.79V17A1,1,0,0,1,19,18Z">
                                                 </path>
@@ -135,8 +72,14 @@
                                                     d="M16.71,13.29a1,1,0,0,0-1.42,1.42l2,2a1,1,0,0,0,1.42,0,1,1,0,0,0,0-1.42Z">
                                                 </path>
                                             </svg>
-                                            <svg class="text-white bg-white w-8 h-8" focusable="false"
-                                                viewBox="0 0 24 24" aria-hidden="true" style="font-size: 24px;">
+                                        </div>
+                                        <p class="text-gray-500">Email</p>
+
+                                    </div>
+                                    <div class="flex flex-col items-center">
+                                        <div class="w-6 h-6 bg-skyblue">
+                                            <svg class="text-white bg-white" focusable="false" viewBox="0 0 24 24"
+                                                aria-hidden="true" style="font-size: 24px;">
                                                 <path
                                                     d="M12,21a1,1,0,0,1-.41-.09C11.28,20.77,4,17.4,4,11.28V11a8,8,0,0,1,16,0,.66.66,0,0,1,0,.14.66.66,0,0,1,0,.14c0,6.12-7.28,9.49-7.59,9.63A1,1,0,0,1,12,21ZM12,5a6,6,0,0,0-6,6v.1s0,.12,0,.15c0,4.14,4.58,6.88,6,7.63,1.42-.75,6-3.5,6-7.6,0,0,0-.16,0-.18s0-.09,0-.1h0A6,6,0,0,0,12,5Z">
                                                 </path>
@@ -145,17 +88,73 @@
                                                 </path>
                                             </svg>
                                         </div>
+                                        <p class="text-gray-500">Location</p>
+
                                     </div>
                                 </div>
-                                <div
-                                    class="mt-6 rounded-lg bg-cyan-500 py-2 px-3 text-center text-sm font-semibold text-white">
-                                    Save Contact</div>
                             </div>
+                            <div class="mt-6 flex-auto rounded-t-2xl bg-white">
+                                <div class="px-4 py-6">
+                                    <div class="space-y-6">
+                                        <!-- <div>
+                                        <div class="text-sm text-gray-500">Email address</div>
+                                        <div class="mt-2 border-b border-gray-200 pb-2 text-sm text-gray-900">
+                                            uchenna@gmail.com</div>
+                                    </div> -->
+                                        <div>
+                                            <div class="text-sm text-gray-500">Website</div>
+                                            <a href="https://uchennaemeruche.com"
+                                                class="mt-2 border-b border-gray-200 pb-2 text-sm text-gray-900">
+                                                {{vCardState.website || 'https://uchennaemeruche.com'}}
+                                            </a>
+                                        </div>
+                                        <div>
+                                            <div class="text-sm text-gray-500">Address</div>
+                                            <div class="mt-2 border-b border-gray-200 pb-2 text-sm text-gray-900">
+                                                {{vCardState.address || 'Ukay Cresent, Off EUK, 112'}}</div>
+                                        </div>
+                                        <div>
+                                            <div class="text-sm text-gray-500">Socials</div>
+                                            <div class="flex items-center justify-between px-6 py-2">
+                                                <svg class="text-white bg-white w-8 h-8" focusable="false"
+                                                    viewBox="0 0 24 24" aria-hidden="true" style="font-size: 24px;">
+                                                    <path
+                                                        d="M16.18,21.3a5,5,0,0,1-3.53-1.46L4.16,11.35a5,5,0,0,1,0-7.07l.71-.7a3,3,0,0,1,4.24,0L11.23,5.7a3,3,0,0,1,0,4.24l-.6.6,2.83,2.83.6-.6a3,3,0,0,1,4.24,0l2.12,2.12a3,3,0,0,1,0,4.24l-.7.71A5,5,0,0,1,16.18,21.3ZM7,4.7A1,1,0,0,0,6.28,5l-.7.71a3,3,0,0,0,0,4.24l8.48,8.48a3,3,0,0,0,4.24,0l.71-.7a1,1,0,0,0,0-1.42l-2.12-2.12a1,1,0,0,0-1.42,0l-2,2L7.8,10.54l2-2a1,1,0,0,0,0-1.42L7.7,5A1,1,0,0,0,7,4.7Z">
+                                                    </path>
+                                                </svg>
+                                                <svg class="text-white bg-white w-8 h-8" focusable="false"
+                                                    viewBox="0 0 24 24" aria-hidden="true" style="font-size: 24px;">
+                                                    <path
+                                                        d="M19,4H5A3,3,0,0,0,2,7V17a3,3,0,0,0,3,3H19a3,3,0,0,0,3-3V7A3,3,0,0,0,19,4Zm0,2h0l-5.84,5a1.89,1.89,0,0,1-2.34,0L5,6H19Zm0,12H5a1,1,0,0,1-1-1V7.79L9.53,12.5a3.91,3.91,0,0,0,4.94,0L20,7.79V17A1,1,0,0,1,19,18Z">
+                                                    </path>
+                                                    <path
+                                                        d="M7.29,13.29l-2,2a1,1,0,0,0,0,1.42,1,1,0,0,0,1.42,0l2-2a1,1,0,0,0-1.42-1.42Z">
+                                                    </path>
+                                                    <path
+                                                        d="M16.71,13.29a1,1,0,0,0-1.42,1.42l2,2a1,1,0,0,0,1.42,0,1,1,0,0,0,0-1.42Z">
+                                                    </path>
+                                                </svg>
+                                                <svg class="text-white bg-white w-8 h-8" focusable="false"
+                                                    viewBox="0 0 24 24" aria-hidden="true" style="font-size: 24px;">
+                                                    <path
+                                                        d="M12,21a1,1,0,0,1-.41-.09C11.28,20.77,4,17.4,4,11.28V11a8,8,0,0,1,16,0,.66.66,0,0,1,0,.14.66.66,0,0,1,0,.14c0,6.12-7.28,9.49-7.59,9.63A1,1,0,0,1,12,21ZM12,5a6,6,0,0,0-6,6v.1s0,.12,0,.15c0,4.14,4.58,6.88,6,7.63,1.42-.75,6-3.5,6-7.6,0,0,0-.16,0-.18s0-.09,0-.1h0A6,6,0,0,0,12,5Z">
+                                                    </path>
+                                                    <path
+                                                        d="M12,15a4,4,0,1,1,4-4A4,4,0,0,1,12,15Zm0-6a2,2,0,1,0,2,2A2,2,0,0,0,12,9Z">
+                                                    </path>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div
+                                        class="mt-6 rounded-lg bg-cyan-500 py-2 px-3 text-center text-sm font-semibold text-white">
+                                        Save Contact</div>
+                                </div>
 
-                        </div>
+                            </div>
                         </div>
                         <div class="w-full">
-                            <ContentBoard/>
+                            <ContentBoard />
                         </div>
                     </div>
                 </div>
@@ -170,11 +169,12 @@
             </div>
         </div>
 
-        
+
     </div>
 </template>
 <script setup lang="tsx">
-import QrcodeSize from '~~/components/dashboard/QrcodeSize.vue';
+
+
 
 const route = useRoute()
 const codeType = ref(route.query.codeType ? route.query.codeType : '')
@@ -184,7 +184,7 @@ const vCardState = reactive({
     fullname: "",
     email: "",
     phone: "",
-    company:"",
+    company: "",
     role: "",
     website: "",
     address: "",
@@ -361,12 +361,12 @@ const steps = [
 
 
 
- 
-const DisplayPhoneContent = () =>{
+
+const DisplayPhoneContent = () => {
     const state = reactive({
         displayContent: null
     })
-    return ( 
+    return (
         <div class="text-white text-center">
             <p>Hi There: {state.displayContent}</p>
         </div>
@@ -374,7 +374,7 @@ const DisplayPhoneContent = () =>{
 }
 
 
-const ContentBoard = () =>{
+const ContentBoard = () => {
     return (
         <div class="text-xl font-bold tracking-tight leading-tight text-white mt-16">
             <div class="w-full p-6 text-center my-auto h-full">
@@ -384,7 +384,7 @@ const ContentBoard = () =>{
     )
 }
 
-const WebsiteQrCode = () =>{
+const WebsiteQrCode = () => {
     const state = reactive({
         url: ''
     })
@@ -397,7 +397,7 @@ const WebsiteQrCode = () =>{
                     Create {codeType.value} Qrcode
                 </h1>
                 <Stepper>
-                    {({currentStep, nextStep, previousStep}) =>(
+                    {({ currentStep, nextStep, previousStep }) => (
                         <section>
                             <StepperHeader>
                                 <StepperStep>
@@ -419,23 +419,30 @@ const WebsiteQrCode = () =>{
                                                 class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-blue-100 dark:border-blue-100 dark:placeholder-gray-400 dark:text-blue-900 dark:focus:ring-blue-100 dark:focus:border-blue-500"
                                                 placeholder="www.mywebsite.com" required="true" />
                                         </div>
-                                    
-                                        <button onClick={(e) => {e.preventDefault(); nextStep(currentStep)}}
+
+                                        <button onClick={(e) => { e.preventDefault(); nextStep(currentStep) }}
                                             class="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
                                             Next
                                         </button>
                                     </form>
                                 </StepperContent>
                                 <StepperContent>
-                                    <div>Configuration happens here: Colors, logo, shape etc</div>
-                                    <button onClick={(e) => {e.preventDefault(); previousStep(currentStep)}}
-                                        class="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
-                                        Previous
-                                    </button>
+                                    <div class="space-y-4 md:space-y-6 mt-16">
+                                        <form class="space-y-4 md:space-y-6 mt-18">
+                                            <DashboardQrcodeSize />
+                                            <DashboardQrCodeColor/>
+                                            <DashboardQrCodeLogo/>
+                                            <DashboardFileUploader/>
+                                            <button onClick={(e) => { e.preventDefault(); previousStep(currentStep) }}
+                                                class="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
+                                                Previous
+                                            </button>
+                                        </form>
+                                    </div>
                                 </StepperContent>
                             </StepperItems>
                         </section>
-                    )} 
+                    )}
                 </Stepper>
             </div>
         </div>
@@ -444,9 +451,9 @@ const WebsiteQrCode = () =>{
 
 </script>
 <style lang="css">
-    #wrapper{
-       width:1300px; 
-    }
+#wrapper {
+    width: 1300px;
+}
 </style>
 
 
