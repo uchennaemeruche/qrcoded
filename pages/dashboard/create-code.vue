@@ -3,7 +3,7 @@
         <div class="column-3 w-full md:w-7/12 h-full mt-4 p-3 border-2 border-dashed md:mx-2 my-2 rounded-md">
             <div class="mx-auto w-full">
                 <WebsiteQrCode/>
-                <QrCodeSizes/>
+                <QrcodeSize/>
             </div>
         </div>
         <div class="column-2 w-full md:w-4/12 h-full mt-4 p-3 border border-dashed md:mx-2 my-2 rounded-md ">
@@ -174,14 +174,7 @@
     </div>
 </template>
 <script setup lang="tsx">
-import {
-  Listbox,
-  ListboxLabel,
-  ListboxButton,
-  ListboxOptions,
-  ListboxOption,
-} from '@headlessui/vue'
-// import { CheckIcon, ChevronUpDownIcon } from '@heroicons/vue/20/solid'
+import QrcodeSize from '~~/components/dashboard/QrcodeSize.vue';
 
 const route = useRoute()
 const codeType = ref(route.query.codeType ? route.query.codeType : '')
@@ -366,82 +359,9 @@ const steps = [
 //     )
 // })
 
-// <option value="100">100x100</option>
-// <option value="200">200x200</option>
-// <option value="300" selected>300x300</option>
-// <option value="400">400x400</option>
-// <option value="500">500x500</option>
-// <option value="600">600x600</option>
-// <option value="700">700x700</option>
 
-
-const QrCodeSizes = () =>{
-    const sizes = [
-      { title: '100x100', v:'100' },
-      { title: '200x200', v:'200' },
-      { title: '300x300', v:'300' },
-      { title: '400x400', v:'400' },
-      { title: '500x500', v:'400' },
-      { title: '600x600', v:'400' },
-      { title: '700x700', v:'400' },
-      
-    ]
-    const selectedSize = ref(sizes[0])
-    return (
-        <Listbox v-model={selectedSize}>
-            <div class="relative mt-1">
-                <ListboxButton
-                class="relative w-full cursor-default rounded-lg bg-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm"
-                >
-                <span class="block truncate">{ selectedSize.value.title }</span>
-                <span
-                    class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2"
-                >
-                    
-                </span>
-                </ListboxButton>
-
-                <transition
-                leave-active-class="transition duration-100 ease-in"
-                leave-from-class="opacity-100"
-                leave-to-class="opacity-0"
-                >
-                <ListboxOptions
-                    class="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm"
-                >
-                    
-                    {({ active, selected }) =>(
-                        <section>
-                            {sizes.map((size, i) =>{
-                                return (
-                                    <ListboxOption
-                                        key={i} 
-                                        value={size}
-                                        as="template"
-                                    >
-                                    <li 
-                                    class={active ? 'bg-amber-100 text-amber-900 relative cursor-default select-none py-2 pl-10 pr-4' : 'text-gray-900 relative cursor-default select-none py-2 pl-10 pr-4'
-                                    }>
-                                        <span class={selected ? 'block truncate font-medium' : 'block truncate font-normal'}>
-                                            {size.title}
-                                        </span>
-                                        {selected ? <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-amber-600"> Check Icon</span> : ''}
-                                    </li>
-                                </ListboxOption>
-                                )
-                            })}
-                        </section>
-                    )}
-                  
-                </ListboxOptions>
-                </transition>
-            </div>
-        </Listbox>
-    )
-}
 
  
-
 const DisplayPhoneContent = () =>{
     const state = reactive({
         displayContent: null
