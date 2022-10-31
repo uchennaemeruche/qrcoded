@@ -8,8 +8,6 @@ const itemContent = ref(null)
 
 const step = ref(1)
 
-console.log("Step: ", step.value)
-
 onMounted(() => {
     if (dividers.value) {
         const itemsLen = dividers.value.length

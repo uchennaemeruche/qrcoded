@@ -2,10 +2,8 @@
     <div class="flex flex-col w-full md:flex-row md:mx-12 lg:mx-0">
         <div class="column-3 w-full md:w-7/12 h-full mt-4 p-3 border-2 border-dashed md:mx-2 my-2 rounded-md">
             <div class="mx-auto w-full">
-               
                 <WebsiteQrCode/>
-               
-               
+                <QrCodeSizes/>
             </div>
         </div>
         <div class="column-2 w-full md:w-4/12 h-full mt-4 p-3 border border-dashed md:mx-2 my-2 rounded-md ">
@@ -33,7 +31,8 @@
                                 </path>
                             </svg>
                         </div>
-                        <div class="mt-16 px-4 text-white flex flex-col mx-auto itemx-center">
+                        <div class="display-content w-full flex flex-col hidden">
+                            <div class="mt-16 px-4 text-white flex flex-col mx-auto itemx-center">
                             <div class="text-2xl text-white">
                                 <img class="h-18 w-18 rounded-full"
                                     src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
@@ -154,6 +153,10 @@
                             </div>
 
                         </div>
+                        </div>
+                        <div class="w-full">
+                            <ContentBoard/>
+                        </div>
                     </div>
                 </div>
                 <svg viewBox="0 0 366 729" aria-hidden="true"
@@ -172,17 +175,16 @@
 </template>
 <script setup lang="tsx">
 import {
-    RadioGroup,
-    RadioGroupLabel,
-    RadioGroupOption,
-    RadioGroupDescription,
-    TransitionRoot,
-    TransitionChild,
-    Dialog,
-    DialogPanel,
-    DialogTitle,
+  Listbox,
+  ListboxLabel,
+  ListboxButton,
+  ListboxOptions,
+  ListboxOption,
 } from '@headlessui/vue'
-// import { Stepper } from '#components';
+// import { CheckIcon, ChevronUpDownIcon } from '@heroicons/vue/20/solid'
+
+const route = useRoute()
+const codeType = ref(route.query.codeType ? route.query.codeType : '')
 
 
 const vCardState = reactive({
@@ -196,7 +198,6 @@ const vCardState = reactive({
 
 })
 
-const isOpen = useState('isOpen')
 
 const steps = [
     {
@@ -210,218 +211,316 @@ const steps = [
     }
 ]
 
-function closeModal() {
-    isOpen.value = false
+
+// const VCard = defineComponent(() =>{
+//     const state = reactive({
+
+//     })
+//     return () => (
+//         <Stepper  v-show="codeType == 'vCard'">
+//             <div class="text-xl font-bold tracking-tight leading-tight text-gray-900 mb-6">
+//                 Create {codeType} code
+//                 <div class="p-4 mx-12">
+//                     <StepperHeader>
+//                         <StepperStep>
+//                             <div class="text-teal-600 text-sm">
+//                                 {steps[0].text}
+//                             </div>
+//                         </StepperStep>
+//                         <StepperDivider />
+//                         <StepperStep>
+//                             <div class="text-sm text-teal-600">
+//                                 {steps[1].text}
+//                             </div>
+//                         </StepperStep>
+//                         <StepperDivider />
+//                         <StepperStep>
+//                             <div class="text-sm text-teal-600">
+//                                 {steps[2].text}
+//                             </div>
+//                         </StepperStep>
+//                         <StepperDivider />
+//                     </StepperHeader>
+//                 </div>
+//             </div>
+
+//             <div class="h-[500px] overflow-y-auto">
+//             <StepperItems>
+//                 <StepperContent>
+//                     <div class="w-full p-6 space-y-4 md:space-y-6 sm:p-8">
+//                         <h1
+//                             class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-blue-900">
+//                             Personal Details
+//                         </h1>
+//                         <form class="space-y-4 md:space-y-6" action="#">
+//                             <div>
+//                                 <label for="fullname"
+//                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-blue-900">Your
+//                                     Name</label>
+//                                 <input type="text" name="fullname" id="fullname" v-model={vCardState.fullname}
+//                                     class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-blue-100 dark:border-blue-100 dark:placeholder-gray-600 dark:text-blue-900 dark:focus:ring-blue-100 dark:focus:border-blue-500"
+//                                     placeholder="John Doe" required="true"/>
+//                             </div>
+
+//                             <div>
+//                                 <label for="email"
+//                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-blue-900">Your
+//                                     email</label>
+//                                 <input type="email" name="email" id="email" v-model={vCardState.email}
+//                                     class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-blue-100 dark:border-blue-600 dark:placeholder-gray-600 dark:text-blue-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+//                                     placeholder="johndoe@company.com" required="true"/>
+//                             </div>
+//                             <div>
+//                                 <label for="phone"
+//                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-blue-900">Phone</label>
+//                                 <input type="tel" name="phone" id="phone" v-model={vCardState.phone}
+//                                     class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-blue-100 dark:border-blue-600 dark:placeholder-gray-600 dark:text-blue-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+//                                     placeholder="+2348 621 3932" required="true"/>
+//                             </div>
+//                             <div>
+//                                 <label for="company"
+//                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-blue-900">Your
+//                                     Company Name/Business Name</label>
+//                                 <input type="text" name="company" id="company" v-model={vCardState.company}
+//                                     class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-blue-100 dark:border-blue-600 dark:placeholder-gray-600 dark:text-blue-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+//                                     placeholder="xyz Ltd." required="true"/>
+//                             </div>
+//                             <div>
+//                                 <label for="job"
+//                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-blue-900">Your
+//                                     Job/Role/Position</label>
+//                                 <input type="text" name="job" id="job" v-model={vCardState.role}
+//                                     class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-blue-100 dark:border-blue-600 dark:placeholder-gray-600 dark:text-blue-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+//                                     placeholder="Managing Director" required="true"/>
+//                             </div>
+//                             <div>
+//                                 <label for="website"
+//                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-blue-900">
+//                                     Website</label>
+//                                 <input type="text" name="website" id="website" v-model={vCardState.website}
+//                                     class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-blue-100 dark:border-blue-600 dark:placeholder-gray-600 dark:text-blue-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+//                                     placeholder="https://www.xyz.com" required="true"/>
+//                             </div>
+//                         </form>
+//                     </div>
+//                 </StepperContent>
+//                 <StepperContent>
+//                     <div class="w-full h-full w-full p-6 space-y-4 md:space-y-6 sm:p-8">
+//                         <h1
+//                             class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-blue-900">
+//                             Address
+//                         </h1>
+//                         <div>
+//                             <label for="street"
+//                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-blue-900">Your
+//                                 Street</label>
+//                             <input type="text" name="street" id="street"
+//                                 class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-blue-100 dark:border-blue-600 dark:placeholder-gray-600 dark:text-blue-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+//                                 placeholder="No 32 St" required="true"/>
+//                         </div>
+//                         <div>
+//                             <label for="city"
+//                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-blue-900">Your
+//                                 City</label>
+//                             <input type="text" name="city" id="city"
+//                                 class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-blue-100 dark:border-blue-600 dark:placeholder-gray-600 dark:text-blue-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+//                                 placeholder="Yen" required="true" />
+//                         </div>
+//                         <div>
+//                             <label for="state"
+//                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-blue-900">Your
+//                                 State</label>
+//                             <input type="text" name="state" id="state"
+//                                 class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-blue-100 dark:border-blue-600 dark:placeholder-gray-600 dark:text-blue-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+//                                 placeholder="BY" required="true" />
+//                         </div>
+//                         <div>
+//                             <label for="zip"
+//                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-blue-900">Your
+//                                 Zip Code</label>
+//                             <input type="text" name="zip" id="zip"
+//                                 class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-blue-100 dark:border-blue-600 dark:placeholder-gray-600 dark:text-blue-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+//                                 placeholder="53532124" required="true" />
+//                         </div>
+//                         <div>
+//                             <label for="country"
+//                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-blue-900">Your
+//                                 Country</label>
+//                             <input type="text" name="country" id="country"
+//                                 class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-blue-100 dark:border-blue-600 dark:placeholder-gray-600 dark:text-blue-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+//                                 placeholder="Nigeria" required="true" />
+//                         </div>
+//                     </div>
+//                 </StepperContent>
+//                 <StepperContent>
+//                     <div class="w-full h-full w-full p-6 space-y-4 md:space-y-6 sm:p-8">
+//                         <h1
+//                             class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-blue-900">
+//                             Third Content Here
+//                         </h1>
+//                     </div>
+//                 </StepperContent>
+//             </StepperItems>
+//             </div>
+//         </Stepper>
+//     )
+// })
+
+// <option value="100">100x100</option>
+// <option value="200">200x200</option>
+// <option value="300" selected>300x300</option>
+// <option value="400">400x400</option>
+// <option value="500">500x500</option>
+// <option value="600">600x600</option>
+// <option value="700">700x700</option>
+
+
+const QrCodeSizes = () =>{
+    const sizes = [
+      { title: '100x100', v:'100' },
+      { title: '200x200', v:'200' },
+      { title: '300x300', v:'300' },
+      { title: '400x400', v:'400' },
+      { title: '500x500', v:'400' },
+      { title: '600x600', v:'400' },
+      { title: '700x700', v:'400' },
+      
+    ]
+    const selectedSize = ref(sizes[0])
+    return (
+        <Listbox v-model={selectedSize}>
+            <div class="relative mt-1">
+                <ListboxButton
+                class="relative w-full cursor-default rounded-lg bg-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm"
+                >
+                <span class="block truncate">{ selectedSize.value.title }</span>
+                <span
+                    class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2"
+                >
+                    
+                </span>
+                </ListboxButton>
+
+                <transition
+                leave-active-class="transition duration-100 ease-in"
+                leave-from-class="opacity-100"
+                leave-to-class="opacity-0"
+                >
+                <ListboxOptions
+                    class="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm"
+                >
+                    
+                    {({ active, selected }) =>(
+                        <section>
+                            {sizes.map((size, i) =>{
+                                return (
+                                    <ListboxOption
+                                        key={i} 
+                                        value={size}
+                                        as="template"
+                                    >
+                                    <li 
+                                    class={active ? 'bg-amber-100 text-amber-900 relative cursor-default select-none py-2 pl-10 pr-4' : 'text-gray-900 relative cursor-default select-none py-2 pl-10 pr-4'
+                                    }>
+                                        <span class={selected ? 'block truncate font-medium' : 'block truncate font-normal'}>
+                                            {size.title}
+                                        </span>
+                                        {selected ? <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-amber-600"> Check Icon</span> : ''}
+                                    </li>
+                                </ListboxOption>
+                                )
+                            })}
+                        </section>
+                    )}
+                  
+                </ListboxOptions>
+                </transition>
+            </div>
+        </Listbox>
+    )
 }
 
-const route = useRoute()
+ 
 
-const codeType = ref(route.query.codeType ? route.query.codeType : '')
-
-const VCard = defineComponent(() =>{
+const DisplayPhoneContent = () =>{
     const state = reactive({
-
+        displayContent: null
     })
-    return () => (
-        <Stepper  v-show="codeType == 'vCard'">
-            <div class="text-xl font-bold tracking-tight leading-tight text-gray-900 mb-6">
-                Create {codeType} code
-                <div class="p-4 mx-12">
-                    <StepperHeader>
-                        <StepperStep>
-                            <div class="text-teal-600 text-sm">
-                                {steps[0].text}
-                            </div>
-                        </StepperStep>
-                        <StepperDivider />
-                        <StepperStep>
-                            <div class="text-sm text-teal-600">
-                                {steps[1].text}
-                            </div>
-                        </StepperStep>
-                        <StepperDivider />
-                        <StepperStep>
-                            <div class="text-sm text-teal-600">
-                                {steps[2].text}
-                            </div>
-                        </StepperStep>
-                        <StepperDivider />
-                    </StepperHeader>
-                </div>
-            </div>
-
-            <div class="h-[500px] overflow-y-auto">
-            <StepperItems>
-                <StepperContent>
-                    <div class="w-full p-6 space-y-4 md:space-y-6 sm:p-8">
-                        <h1
-                            class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-blue-900">
-                            Personal Details
-                        </h1>
-                        <form class="space-y-4 md:space-y-6" action="#">
-                            <div>
-                                <label for="fullname"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-blue-900">Your
-                                    Name</label>
-                                <input type="text" name="fullname" id="fullname" v-model={vCardState.fullname}
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-blue-100 dark:border-blue-100 dark:placeholder-gray-600 dark:text-blue-900 dark:focus:ring-blue-100 dark:focus:border-blue-500"
-                                    placeholder="John Doe" required="true"/>
-                            </div>
-
-                            <div>
-                                <label for="email"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-blue-900">Your
-                                    email</label>
-                                <input type="email" name="email" id="email" v-model={vCardState.email}
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-blue-100 dark:border-blue-600 dark:placeholder-gray-600 dark:text-blue-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    placeholder="johndoe@company.com" required="true"/>
-                            </div>
-                            <div>
-                                <label for="phone"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-blue-900">Phone</label>
-                                <input type="tel" name="phone" id="phone" v-model={vCardState.phone}
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-blue-100 dark:border-blue-600 dark:placeholder-gray-600 dark:text-blue-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    placeholder="+2348 621 3932" required="true"/>
-                            </div>
-                            <div>
-                                <label for="company"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-blue-900">Your
-                                    Company Name/Business Name</label>
-                                <input type="text" name="company" id="company" v-model={vCardState.company}
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-blue-100 dark:border-blue-600 dark:placeholder-gray-600 dark:text-blue-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    placeholder="xyz Ltd." required="true"/>
-                            </div>
-                            <div>
-                                <label for="job"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-blue-900">Your
-                                    Job/Role/Position</label>
-                                <input type="text" name="job" id="job" v-model={vCardState.role}
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-blue-100 dark:border-blue-600 dark:placeholder-gray-600 dark:text-blue-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    placeholder="Managing Director" required="true"/>
-                            </div>
-                            <div>
-                                <label for="website"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-blue-900">
-                                    Website</label>
-                                <input type="text" name="website" id="website" v-model={vCardState.website}
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-blue-100 dark:border-blue-600 dark:placeholder-gray-600 dark:text-blue-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    placeholder="https://www.xyz.com" required="true"/>
-                            </div>
-                        </form>
-                    </div>
-                </StepperContent>
-                <StepperContent>
-                    <div class="w-full h-full w-full p-6 space-y-4 md:space-y-6 sm:p-8">
-                        <h1
-                            class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-blue-900">
-                            Address
-                        </h1>
-                        <div>
-                            <label for="street"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-blue-900">Your
-                                Street</label>
-                            <input type="text" name="street" id="street"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-blue-100 dark:border-blue-600 dark:placeholder-gray-600 dark:text-blue-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="No 32 St" required="true"/>
-                        </div>
-                        <div>
-                            <label for="city"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-blue-900">Your
-                                City</label>
-                            <input type="text" name="city" id="city"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-blue-100 dark:border-blue-600 dark:placeholder-gray-600 dark:text-blue-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="Yen" required="true" />
-                        </div>
-                        <div>
-                            <label for="state"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-blue-900">Your
-                                State</label>
-                            <input type="text" name="state" id="state"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-blue-100 dark:border-blue-600 dark:placeholder-gray-600 dark:text-blue-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="BY" required="true" />
-                        </div>
-                        <div>
-                            <label for="zip"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-blue-900">Your
-                                Zip Code</label>
-                            <input type="text" name="zip" id="zip"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-blue-100 dark:border-blue-600 dark:placeholder-gray-600 dark:text-blue-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="53532124" required="true" />
-                        </div>
-                        <div>
-                            <label for="country"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-blue-900">Your
-                                Country</label>
-                            <input type="text" name="country" id="country"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-blue-100 dark:border-blue-600 dark:placeholder-gray-600 dark:text-blue-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="Nigeria" required="true" />
-                        </div>
-                    </div>
-                </StepperContent>
-                <StepperContent>
-                    <div class="w-full h-full w-full p-6 space-y-4 md:space-y-6 sm:p-8">
-                        <h1
-                            class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-blue-900">
-                            Third Content Here
-                        </h1>
-                    </div>
-                </StepperContent>
-            </StepperItems>
-            </div>
-        </Stepper>
+    return ( 
+        <div class="text-white text-center">
+            <p>Hi There: {state.displayContent}</p>
+        </div>
     )
-})
+}
 
-const WebsiteQrCode = defineComponent(() => {
+
+const ContentBoard = () =>{
+    return (
+        <div class="text-xl font-bold tracking-tight leading-tight text-white mt-16">
+            <div class="w-full p-6 text-center my-auto h-full">
+                <p>Scanning the QR Code will redirect you to the website you want.</p>
+            </div>
+        </div>
+    )
+}
+
+const WebsiteQrCode = () =>{
     const state = reactive({
         url: ''
     })
-  return () => (
-    <div class="text-xl font-bold tracking-tight leading-tight text-gray-900 mb-6">
+
+    return (
+        <div class="text-xl font-bold tracking-tight leading-tight text-gray-900 mb-6">
             <div class="w-full p-6 space-y-4 md:space-y-6 sm:p-8">
                 <h1
                     class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-blue-900">
                     Create {codeType.value} Qrcode
                 </h1>
                 <Stepper>
-                    <StepperHeader>
-                        <StepperStep>
-                            <div class="text-teal-600 text-sm">Website Information</div>
-                        </StepperStep>
-                        <StepperDivider />
-                        <StepperStep>
-                            <div class="text-sm text-teal-600">Configuration</div>
-                        </StepperStep>
-                    </StepperHeader>
-                    <StepperItems>
-                        <StepperContent>
-                            <form class="space-y-4 md:space-y-6 mt-16">
-                                <div>
-                                    <label for="website"
-                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-blue-900">
-                                        Website URL</label>
-                                    <input type="text" name="website" id="website" v-model={state.url}
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-blue-100 dark:border-blue-100 dark:placeholder-gray-400 dark:text-blue-900 dark:focus:ring-blue-100 dark:focus:border-blue-500"
-                                        placeholder="www.mywebsite.com" required="true" />
-                                </div>
-                            
-                                <button onClick={() => alert("Generating")}
-                                    class="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
-                                    Next
-                                </button>
-                            </form>
-                        </StepperContent>
-                        <StepperContent>
-                            <div>Configuration happens here: Colors, logo, shape etc</div>
-                        </StepperContent>
-                    </StepperItems>
-                </Stepper>   
+                    {({currentStep, nextStep, previousStep}) =>(
+                        <section>
+                            <StepperHeader>
+                                <StepperStep>
+                                    <div class="text-teal-600 text-sm">Website Information</div>
+                                </StepperStep>
+                                <StepperDivider />
+                                <StepperStep>
+                                    <div class="text-sm text-teal-600">Configuration</div>
+                                </StepperStep>
+                            </StepperHeader>
+                            <StepperItems>
+                                <StepperContent>
+                                    <form class="space-y-4 md:space-y-6 mt-16">
+                                        <div>
+                                            <label for="website"
+                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-blue-900">
+                                                Submit Website URL to create your QrCode</label>
+                                            <input type="text" name="url" id="website" v-model={state.url}
+                                                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-blue-100 dark:border-blue-100 dark:placeholder-gray-400 dark:text-blue-900 dark:focus:ring-blue-100 dark:focus:border-blue-500"
+                                                placeholder="www.mywebsite.com" required="true" />
+                                        </div>
+                                    
+                                        <button onClick={(e) => {e.preventDefault(); nextStep(currentStep)}}
+                                            class="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
+                                            Next
+                                        </button>
+                                    </form>
+                                </StepperContent>
+                                <StepperContent>
+                                    <div>Configuration happens here: Colors, logo, shape etc</div>
+                                    <button onClick={(e) => {e.preventDefault(); previousStep(currentStep)}}
+                                        class="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
+                                        Previous
+                                    </button>
+                                </StepperContent>
+                            </StepperItems>
+                        </section>
+                    )} 
+                </Stepper>
             </div>
         </div>
-   
-  )
-})
-
+    )
+}
 
 </script>
 <style lang="css">
@@ -429,3 +528,5 @@ const WebsiteQrCode = defineComponent(() => {
        width:1300px; 
     }
 </style>
+
+
