@@ -1,5 +1,15 @@
 <template>
-    <div class="w-full">
+    <Disclosure v-slot="{ open }">
+        <DisclosureButton
+            class="flex w-full justify-between rounded-lg bg-blue-100 px-4 py-2 text-left text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring focus-visible:ring-blue-500 focus-visible:ring-opacity-75">
+            <!-- <h5 class="text-xl font-bold leading-none text-gray-900 dark:text-gray-200 mb-3">Select QrCode Size</h5> -->
+            <span>Upload QRCode Logo?</span>
+            <svg fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor"
+                :class="open ? 'rotate-180 transform' : ''" class="h-5 w-5 text-blue-500">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+            </svg>
+        </DisclosureButton>
+        <DisclosurePanel class="px-4 text-sm text-gray-500">
         <div class="p-4 w-full  bg-white rounded-lg border shadow-md sm:p-8 dark:bg-gray-800 dark:border-gray-700">
             <div class="flex justify-between items-center mb-4">
                 <h5 class="text-xl font-bold leading-none text-gray-900 dark:text-white">Upload Custom Qrcode Logo</h5>
@@ -9,8 +19,8 @@
                         d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
             </div>
-            <div class="flow-root">
-                <div class="flex justify-center items-center w-full" :data-active="dropZoneActive"
+            <div class="relative flow-root">
+                <div v-if="files.length < 1" class="flex justify-center items-center w-full drop-area" :data-active="dropZoneActive" 
                     @dragenter="setDropzoneActive" @dragleave="setDropZoneInactive"
                    @dragover.prevent="onUploadDragoverEvent" @drop.prevent="onUploadDropEvent">
                     <div class="absolute rounded-full bg-gray-100 h-20 w-20 z-10 transition-opacity duration-500 ease-in-out"
@@ -23,8 +33,8 @@
                         }">
 
                     </div>
-                    <label for="dropzone-file"
-                        class="flex flex-col justify-center items-center w-full h-64 bg-gray-50 rounded-lg border-2 border-gray-300 border-dashed cursor-pointer dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
+                    <label for="drag-drop-input"
+                        class="relative flex flex-col justify-center items-center w-full h-64 bg-gray-50 rounded-lg border-2 border-gray-300 border-dashed cursor-pointer dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
                         <div class="flex flex-col justify-center items-center pt-5 pb-6">
                             <svg aria-hidden="true" class="mb-3 w-10 h-10 text-gray-400" fill="none"
                                 stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -37,40 +47,26 @@
                             <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF (MAX. 800x400px)
                             </p>
                         </div>
-                        <input :id="id" type="file" :multiple="multiple" :accept="acceptedFileTypes"  class="hidden" @change.prevent="handleFileChange">
+                        <input :id="id" type="file" :multiple="multiple" :accept="acceptedFileTypes" class="hidden" @change.prevent="handleFileChange">
                     </label>
                 </div>
-                <div class="bg-white shadow overflow-hidden sm:rounded-md mt-5">
-                    <ul>
-                        <li v-for="(file, index) in files" v-bind:key="index">
-                            <a href="#"
-                                class="block hover:bg-gray-50 focus:outline-none focus:bg-gray-50 transition duration-150 ease-in-out">
-                                <div class="px-4 py-4 sm:px-6">
-                                    <div class="flex items-center justify-between">
-                                        <div class="text-sm leading-5 font-medium text-pink-600 truncate">
-                                            {{ file.name }} ({{ file.size | prettyBytes }})
-                                        </div>
-                                        <div class="ml-2 flex-shrink-0 flex">
-                                            <span
-                                                class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                                Upload
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                    </ul>
+                
+
+                <div v-else class="overflow-hidden sm:rounded-md w-full h-64" >
+                    <DashboardFilePreview v-for="file of files" :key="file.id" :file="file" tag="div" @remove="removeFile" />
                 </div>
 
+               
             </div>
         </div>
 
-    </div>
+    </DisclosurePanel>
+    </Disclosure>
 
 </template>
 <script setup lang="ts">
-import { eventNames } from 'process';
+import { Disclosure, DisclosureButton, DisclosurePanel  } from '@headlessui/vue'
+const { files, addFiles, removeFile}  = useFileList()
 
 
 const props = defineProps({
@@ -84,7 +80,7 @@ const {id, multiple, acceptedFileTypes} = toRefs(props)
 
 const dropZoneActive = ref(false)
 let inActiveTimeout = null
-const files = ref([])
+// const files = ref([])
 const pageX = ref(0)
 const pageY = ref(0)
 const uploadDragoverTracking = ref(false)
@@ -120,22 +116,25 @@ const droppedFiles = (e) => {
     let droppedFiles = e.dataTransfer.files;
 
     if (!droppedFiles) return;
-    ([...droppedFiles]).forEach(f => {
-        files.value.push(f)
-    });
+    addFiles(droppedFiles);
+    // ([...droppedFiles]).forEach(f => {
+    //     files.value.push(f)
+    // });
 }
 const  droppedFileValidator = (file) => {
     return false;
 }
-const removeFile = (file) => {
-    files.value = files.value.filter(f => {
-        return f != file;
-    });
-}
+// const removeFile = (file) => {
+//     files.value = files.value.filter(f => {
+//         return f != file;
+//     });
+// }
 
 const handleFileChange = (e) =>{
     console.log(e.target.files)
-    files.value = Array.from(e.target.files) || []
+    // files.value = Array.from(e.target.files) || []
+    addFiles(e.target.files)
+    e.target.value = null
 }
 const uploadFiles =() => {
     alert("HElo")
@@ -163,12 +162,8 @@ onUnmounted(() =>{
 
 </script>
 <style lang="css">
-#drag-drop-input {
-    @apply absolute top-0 left-0 right-0 bottom-0 w-full block;
+.drop-area[data-active=true] {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    background: #ffffffcc;
 }
-
-/* .card-body{
-        flex: 1 1 auto;
-        padding: 1.5rem;
-    } */
 </style>
