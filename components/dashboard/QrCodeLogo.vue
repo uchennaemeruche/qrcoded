@@ -10,7 +10,19 @@
                 </svg>
             </div>
             <div class="flow-root">
-                <div class="flex justify-center items-center w-full">
+                <div class="flex justify-center items-center w-full" :data-active="dropZoneActive"
+                    @dragenter="setDropzoneActive" @dragleave="setDropZoneInactive"
+                   @dragover.prevent="onUploadDragoverEvent" @drop.prevent="onUploadDropEvent">
+                    <div class="absolute rounded-full bg-gray-100 h-20 w-20 z-10 transition-opacity duration-500 ease-in-out"
+                        v-bind:class="{
+                            'opacity-100': uploadDragoverTracking,
+                            'opacity-0': !uploadDragoverTracking
+                        }" v-bind:style="{
+                            left: `calc(${pageX}px - 2.5rem)`,
+                            top: `calc(${pageY}px - 2.5rem)`
+                        }">
+
+                    </div>
                     <label for="dropzone-file"
                         class="flex flex-col justify-center items-center w-full h-64 bg-gray-50 rounded-lg border-2 border-gray-300 border-dashed cursor-pointer dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
                         <div class="flex flex-col justify-center items-center pt-5 pb-6">
@@ -25,8 +37,30 @@
                             <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF (MAX. 800x400px)
                             </p>
                         </div>
-                        <input id="dropzone-file" type="file" class="hidden">
+                        <input :id="id" type="file" :multiple="multiple" :accept="acceptedFileTypes"  class="hidden" @change.prevent="handleFileChange">
                     </label>
+                </div>
+                <div class="bg-white shadow overflow-hidden sm:rounded-md mt-5">
+                    <ul>
+                        <li v-for="(file, index) in files" v-bind:key="index">
+                            <a href="#"
+                                class="block hover:bg-gray-50 focus:outline-none focus:bg-gray-50 transition duration-150 ease-in-out">
+                                <div class="px-4 py-4 sm:px-6">
+                                    <div class="flex items-center justify-between">
+                                        <div class="text-sm leading-5 font-medium text-pink-600 truncate">
+                                            {{ file.name }} ({{ file.size | prettyBytes }})
+                                        </div>
+                                        <div class="ml-2 flex-shrink-0 flex">
+                                            <span
+                                                class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                                Upload
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
                 </div>
 
             </div>
@@ -35,35 +69,102 @@
     </div>
 
 </template>
-<script setup>
-import { Switch } from '@headlessui/vue'
+<script setup lang="ts">
+import { eventNames } from 'process';
 
-const backgroundColor = ref('#FFFFFF')
-const transparentBackground = ref(false)
 
-const dotsColor = ref('#000000')
-const isGradientDots = ref(false)
+const props = defineProps({
+    id: {type: String, default: 'drag-drop-input'},
+    multiple: {type: Boolean, default: false},
+    color: {type: String, default: '' },
+    acceptedFileTypes: {type: String, default: "*"}
+})
 
-const markerBorderColor = ref('#000000')
+const {id, multiple, acceptedFileTypes} = toRefs(props)
 
-const markerCenterColor = ref('#000000')
+const dropZoneActive = ref(false)
+let inActiveTimeout = null
+const files = ref([])
+const pageX = ref(0)
+const pageY = ref(0)
+const uploadDragoverTracking = ref(false)
+const uploadDragoverEvent = ref(false)
 
+const setDropzoneActive  = () =>{
+    dropZoneActive.value = true
+    clearTimeout(inActiveTimeout)
+}
+
+const setDropZoneInactive = () =>{
+    inActiveTimeout = setTimeout(() => {
+        dropZoneActive.value = false
+    }, 50)
+}
+
+const onUploadDragoverEvent =(e) => {
+    setDropZoneInactive()
+    uploadDragoverEvent.value = true;
+    uploadDragoverTracking.value = true;
+    pageX.value = e.pageX;
+    pageY.value = e.pageY;
+}
+const onUploadDropEvent = (e) => {
+    setDropZoneInactive()
+    uploadDragoverEvent.value = false;
+    uploadDragoverTracking.value = false;
+    pageX.value = 0;
+    pageY.value = 0;
+    droppedFiles(e)
+}
+const droppedFiles = (e) => {
+    let droppedFiles = e.dataTransfer.files;
+
+    if (!droppedFiles) return;
+    ([...droppedFiles]).forEach(f => {
+        files.value.push(f)
+    });
+}
+const  droppedFileValidator = (file) => {
+    return false;
+}
+const removeFile = (file) => {
+    files.value = files.value.filter(f => {
+        return f != file;
+    });
+}
+
+const handleFileChange = (e) =>{
+    console.log(e.target.files)
+    files.value = Array.from(e.target.files) || []
+}
+const uploadFiles =() => {
+    alert("HElo")
+    console.log(files.value);
+    // This is where the magic could happen!
+}
+
+const events = ['dragenter', 'dragover', 'dragleave', 'drop']
+
+const preventDefaults = (e) => {
+    e.preventDefault()
+}
+
+onMounted(() =>{
+    events.forEach(event =>{
+        document.body.addEventListener(event, preventDefaults)
+    })
+})
+
+onUnmounted(() =>{
+    events.forEach(event =>{
+        document.body.removeEventListener(event, preventDefaults)
+    })
+})
 
 </script>
 <style lang="css">
-.color-card {
-    border: 0.1rem solid rgb(227, 236, 242) !important;
-    position: relative;
-    transition: all 0.2s ease 0s;
-    box-shadow: rgba(42, 53, 79, 0.05) 0px 1.5rem 4rem !important;
-}
-
-
-.color-holder {
-    box-shadow: rgba(0, 0, 0, 0.05) 0px 4px 30px;
-    border-radius: unset;
-    display: inline-block;
-    @apply h-full w-full p-2.5 bg-gray-200 text-lg font-normal text-gray-600
+#drag-drop-input {
+    @apply absolute top-0 left-0 right-0 bottom-0 w-full block;
 }
 
 /* .card-body{

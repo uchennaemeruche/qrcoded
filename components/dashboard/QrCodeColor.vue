@@ -1,13 +1,17 @@
 <template>
-    <div class="w-full">
+    <Disclosure v-slot="{ open }">
+        <DisclosureButton
+            class="flex w-full justify-between rounded-lg bg-blue-100 px-4 py-2 text-left text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring focus-visible:ring-blue-500 focus-visible:ring-opacity-75">
+            <!-- <h5 class="text-xl font-bold leading-none text-gray-900 dark:text-gray-200 mb-3">Select QrCode Size</h5> -->
+            <span>Customize QRCode Colors?</span>
+            <svg fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor"
+                :class="open ? 'rotate-180 transform' : ''" class="h-5 w-5 text-blue-500">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+            </svg>
+        </DisclosureButton>
+        <DisclosurePanel class="px-4 text-sm text-gray-500">
         <div
             class="p-4 w-full  bg-white rounded-lg border shadow-md sm:p-8 dark:bg-gray-800 dark:border-gray-700">
-            <div class="flex justify-between items-center mb-4">
-                <h5 class="text-xl font-bold leading-none text-gray-900 dark:text-white">Customize QRCode Colors</h5>
-                <svg fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" class="w-6 h-6 fill-gray-100">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-            </div>
             <div class="flow-root">
                 <ul role="list" class="divide-y divide-gray-200 dark:divide-gray-700">
                     <li class="py-3 sm:py-4">
@@ -81,11 +85,13 @@
             </div>
         </div>
 
-    </div>
+    </DisclosurePanel>
+    </Disclosure>
 
 </template>
 <script setup>
-import { Switch } from '@headlessui/vue'
+import { Switch, Disclosure, DisclosureButton, DisclosurePanel  } from '@headlessui/vue'
+
 
 const backgroundColor = ref('#FFFFFF')
 const transparentBackground = ref(false)
