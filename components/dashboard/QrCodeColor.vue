@@ -92,16 +92,23 @@
 <script setup>
 import { Switch, Disclosure, DisclosureButton, DisclosurePanel  } from '@headlessui/vue'
 
+const props = defineProps({
+    backgroundColor: {type: String, default: '#FFFFFF'},
+    transparentBackground: {type: Boolean, default: false},
+    dotsColor: {type: String, default: '#000000'},
+    isGradientDots: {type: Boolean, default: false},
+    markerBorderColor: {type: String, default: '#000000'},
+    markerCenterColor: {type: String, default: '#000000'}
+})
+const {backgroundColor, transparentBackground, dotsColor, isGradientDots, markerBorderColor, markerCenterColor} = toRefs(props)
+// const transparentBackground = ref(false)
 
-const backgroundColor = ref('#FFFFFF')
-const transparentBackground = ref(false)
+// const dotsColor = ref('#000000')
+// const isGradientDots = ref(false)
 
-const dotsColor = ref('#000000')
-const isGradientDots = ref(false)
+// const markerBorderColor = ref('#000000')
 
-const markerBorderColor = ref('#000000')
-
-const markerCenterColor = ref('#000000')
+// const markerCenterColor = ref('#000000')
 
 
 </script>

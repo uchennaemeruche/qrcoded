@@ -174,8 +174,16 @@
 </template>
 <script setup lang="tsx">
 
+// import {QrCode} from '#components';
+
+import QrCode from '~~/components/QrCode';
+
+
 const route = useRoute()
 const codeType = ref(route.query.codeType ? route.query.codeType : '')
+
+
+
 
 
 const vCardState = reactive({
@@ -371,12 +379,24 @@ const DisplayPhoneContent = () => {
     )
 }
 
+const qrCodeOpt = reactive({
+    visible: false,
+    options: {
+        width: 100,
+        color:{},
+        size: 1,
 
+    },
+    value: undefined
+})
 const ContentBoard = () => {
     return (
         <div class="text-xl font-bold tracking-tight leading-tight text-white mt-16">
             <div class="w-full p-6 text-center my-auto h-full">
                 <p>Scanning the QR Code will redirect you to the website you want.</p>
+            </div>
+            <div class="w-full relative flex items-center justify-center">
+                {qrCodeOpt.visible ? <QrCode value={qrCodeOpt.value} options={qrCodeOpt.options} v-show={qrCodeOpt.visible} /> : <div></div>}
             </div>
         </div>
     )
@@ -434,6 +454,10 @@ const WebsiteQrCode = () => {
                                                 class="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
                                                 Previous
                                             </button>
+                                            <button onClick={(e) => {e.preventDefault(); createQrCode(state.url)}}
+                                                class="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
+                                                Create Code
+                                            </button>
                                         </form>
                                     </div>
                                 </StepperContent>
@@ -444,6 +468,22 @@ const WebsiteQrCode = () => {
             </div>
         </div>
     )
+}
+
+
+const createQrCode = async(url) =>{
+   qrCodeOpt.value = url
+   qrCodeOpt.visible = true
+   qrCodeOpt.options = {
+    color: {
+        dark:"#010599FF",
+        light:"#FFBF60FF"
+    },
+    size: 1,
+    width: 300
+
+   }
+    
 }
 
 </script>
