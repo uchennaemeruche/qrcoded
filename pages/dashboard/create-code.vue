@@ -382,9 +382,6 @@ const DisplayPhoneContent = () => {
 const qrCodeOpt = reactive({
     visible: false,
     options: {
-        width: 100,
-        color:{},
-        size: 1,
 
     },
     value: undefined
@@ -404,7 +401,8 @@ const ContentBoard = () => {
 
 const WebsiteQrCode = () => {
     const state = reactive({
-        url: ''
+        url: '',
+
     })
 
     return (
@@ -448,7 +446,7 @@ const WebsiteQrCode = () => {
                                     <div class="space-y-4 md:space-y-6 mt-16">
                                         <form class="space-y-4 md:space-y-6 mt-18">
                                             <DashboardQrcodeSize />
-                                            <DashboardQrCodeColor/>
+                                            <DashboardQrCodeColor />
                                             <DashboardQrCodeFileUpload/>
                                             <button onClick={(e) => { e.preventDefault(); previousStep(currentStep) }}
                                                 class="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
@@ -471,13 +469,15 @@ const WebsiteQrCode = () => {
 }
 
 
+const { backgroundColor, transparentBackground, dotsColor, isGradientDots, markerBorderColor, markerCenterColor, } = useQrCode()
 const createQrCode = async(url) =>{
+    console.log("Background",backgroundColor.value)
    qrCodeOpt.value = url
    qrCodeOpt.visible = true
    qrCodeOpt.options = {
     color: {
-        dark:"#010599FF",
-        light:"#FFBF60FF"
+        dark:backgroundColor.value,
+        light:dotsColor.value
     },
     size: 1,
     width: 300

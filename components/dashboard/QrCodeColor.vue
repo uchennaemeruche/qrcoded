@@ -21,7 +21,7 @@
                                 <input class="color-holder" v-model="backgroundColor">
                             </div>
                             <div class="h-full w-1/5">
-                                <input type="color" class="h-full w-full" v-model="backgroundColor"
+                                <input type="color" class="h-full w-full" v-model="backgroundColor" @change="setBackgroundColor(backgroundColor)"
                                 style="border: 0.1rem solid rgb(227, 236, 242); background: rgb(255, 255, 255);">
                             </div>
                         </div>
@@ -42,7 +42,7 @@
                                 <input class="color-holder" v-model="dotsColor">
                             </div>
                             <div class="h-full w-1/5">
-                                <input type="color" class="h-full w-full" v-model="dotsColor"
+                                <input type="color" class="h-full w-full" v-model="dotsColor" @change="setDotsColor(dotsColor)"
                                 style="border: 0.1rem solid rgb(227, 236, 242); background: rgb(255, 255, 255);">
                             </div>
                         </div>
@@ -92,23 +92,8 @@
 <script setup>
 import { Switch, Disclosure, DisclosureButton, DisclosurePanel  } from '@headlessui/vue'
 
-const props = defineProps({
-    backgroundColor: {type: String, default: '#FFFFFF'},
-    transparentBackground: {type: Boolean, default: false},
-    dotsColor: {type: String, default: '#000000'},
-    isGradientDots: {type: Boolean, default: false},
-    markerBorderColor: {type: String, default: '#000000'},
-    markerCenterColor: {type: String, default: '#000000'}
-})
-const {backgroundColor, transparentBackground, dotsColor, isGradientDots, markerBorderColor, markerCenterColor} = toRefs(props)
-// const transparentBackground = ref(false)
+const { setBackgroundColor, setDotsColor, setMarkerBorderColor, backgroundColor, transparentBackground, dotsColor, isGradientDots, markerBorderColor, markerCenterColor} = useQrCode()
 
-// const dotsColor = ref('#000000')
-// const isGradientDots = ref(false)
-
-// const markerBorderColor = ref('#000000')
-
-// const markerCenterColor = ref('#000000')
 
 
 </script>

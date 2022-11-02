@@ -41,7 +41,7 @@ import { toCanvas, toDataURL, toString } from 'qrcode';
                 switch (this.tag) {
                     case 'canvas':
                         toCanvas(this.$el, value, options, (err) =>{
-                            console.log("New Value", value)
+                            console.log("New Value", options)
                             if(err){
                                 console.log("Canvas error:", err)
                                 throw err

@@ -1,48 +1,48 @@
 
-import Qr, {  QRCodeToDataURLOptions } from 'qrcode'
-
 const useQrCode = () =>{
 
-    const qrcode = ref(null)
-    const canvasEl = ref<HTMLCanvasElement | null>(null)
-    const canvas = canvasEl.value
-    
-
-    const optn: QRCodeToDataURLOptions ={
-        errorCorrectionLevel: 'H',
-        type: 'image/jpeg',
-        rendererOpts:{
-            quality: 0.4,
-        },
-        color: {
-            dark:"#010599FF",
-            light:"#FFBF60FF"
-        }
+    const backgroundColor = useState<String>('#FFFFFF')
+    const setBackgroundColor = (value) =>{
+        backgroundColor.value = value
     }
+    const transparentBackground = ref(false)
     
-
-   const createCode = async(text) =>{
-       qrcode.value = await Qr.toDataURL(text, optn)
+    const dotsColor = ref('#000000')
+    const setDotsColor = (value) =>{
+        dotsColor.value = value
+    }
+    const isGradientDots = ref(false)
+    
+    const markerBorderColor = ref('#000000')
+    const setMarkerBorderColor = (value) =>{
+        markerBorderColor.value = value
     }
 
+    
+    const markerCenterColor = ref('#000000')
+    const setMarkerCenterColor = (value) =>{
+        markerCenterColor.value = value
+    }
 
+    const url = ref('')
 
-    // const generate = (tag: String, options: QRCodeOptions, value: string, ) =>{
-    //     switch (tag) {
-    //         case 'canvas':
-    //             Qr.toCanvas(canvas, value, options, (err) =>{
-    //                 console.log("Canvas error:", err)
-    //                 throw err
-    //             })
-    //             break;
-        
-    //         default:
-    //             break;
-    //     }
-    // }
+    const size =  ref(100)
+
+    
 
     return {
-        createCode, qrcode
+        backgroundColor,
+        transparentBackground,
+        dotsColor,
+        isGradientDots,
+        markerBorderColor,
+        markerCenterColor,
+        setBackgroundColor,
+        setDotsColor,
+        setMarkerBorderColor,
+        setMarkerCenterColor,
+        url,
+        size
     }
 }
 
