@@ -476,8 +476,8 @@ const createQrCode = async(url) =>{
    qrCodeOpt.visible = true
    qrCodeOpt.options = {
     color: {
-        dark:backgroundColor.value,
-        light:dotsColor.value
+        dark:dotsColor.value,
+        // light:dotsColor.value
     },
     size: 1,
     width: 300

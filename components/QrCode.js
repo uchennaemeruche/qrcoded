@@ -1,5 +1,5 @@
 
-import { toCanvas, toDataURL, toString } from 'qrcode';
+import QR, { toCanvas, toDataURL, toString } from 'qrcode';
 
     
     const EVENT_READY = 'ready'
@@ -37,6 +37,8 @@ import { toCanvas, toDataURL, toString } from 'qrcode';
                 const done  = () =>{
                     this.$emit(EVENT_READY, this.$el)
                 }
+                const qr = QR.create(value, options)
+                console.log("QR: ",qr)
 
                 switch (this.tag) {
                     case 'canvas':

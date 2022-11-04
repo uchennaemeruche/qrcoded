@@ -13,6 +13,7 @@ const useQrCode = () =>{
         type: 'image/jpeg',
         rendererOpts:{
             quality: 0.4,
+            
         },
         color: {
             dark:"#010599FF",

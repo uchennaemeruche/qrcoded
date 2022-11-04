@@ -3,7 +3,7 @@
         <DisclosureButton
             class="flex w-full justify-between rounded-lg bg-blue-100 px-4 py-2 text-left text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring focus-visible:ring-blue-500 focus-visible:ring-opacity-75">
             <!-- <h5 class="text-xl font-bold leading-none text-gray-900 dark:text-gray-200 mb-3">Select QrCode Size</h5> -->
-            <span>Upload QRCode Logo?</span>
+            <span>Upload Logo?</span>
             <svg fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor"
                 :class="open ? 'rotate-180 transform' : ''" class="h-5 w-5 text-blue-500">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
