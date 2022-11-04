@@ -26,7 +26,12 @@ const useQrCode = () =>{
 
     const url = ref('')
 
-    const size =  ref(100)
+    const size =  useState<Number>('size', () => 100)
+    const setSize = (newValue: Number) =>{
+        size.value = newValue
+        console.log("New Size", size.value)
+    }
+
 
     
 
@@ -42,7 +47,8 @@ const useQrCode = () =>{
         setMarkerBorderColor,
         setMarkerCenterColor,
         url,
-        size
+        size,
+        setSize,
     }
 }
 

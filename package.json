@@ -17,6 +17,7 @@
     "@headlessui/vue": "^1.7.3",
     "@heroicons/vue": "^2.0.12",
     "@types/qrcode": "^1.5.0",
+    "qr-code-styling": "^1.6.0-rc.1",
     "qrcode": "^1.5.1",
     "vue-router": "^4.1.5"
   }

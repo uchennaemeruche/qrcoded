@@ -2,7 +2,7 @@
     <div class="flex flex-col w-full md:flex-row md:mx-12 lg:mx-0">
         <div class="column-3 w-full md:w-7/12 h-full mt-4 p-3 border-2 border-dashed md:mx-2 my-2 rounded-md">
             <div class="mx-auto w-full">
-                <WebsiteQrCode />
+                <DashboardQrCodeCreator :qr-type="codeType.toString()" @update="updateQrConfig" />
             </div>
         </div>
         <div class="column-2 w-full md:w-4/12 h-full mt-4 p-3 border border-dashed md:mx-2 my-2 rounded-md ">
@@ -39,8 +39,8 @@
 
                                 </div>
                                 <div class="text-sm text-gray-500 text-center mt-4">
-                                    <p class="text-white text-lg">{{vCardState.fullname || 'John Doe'}}</p>
-                                    <p class="text-white">{{vCardState.role || 'Software Engineer'}}</p>
+                                    <p class="text-white text-lg">{{                                                               vCardState.fullname || 'John Doe'                                                               }}</p>
+                                    <p class="text-white">{{                                                               vCardState.role || 'Software Engineer'                                                               }}</p>
 
                                 </div>
                             </div>
@@ -105,13 +105,13 @@
                                             <div class="text-sm text-gray-500">Website</div>
                                             <a href="https://uchennaemeruche.com"
                                                 class="mt-2 border-b border-gray-200 pb-2 text-sm text-gray-900">
-                                                {{vCardState.website || 'https://uchennaemeruche.com'}}
+                                                {{                                                               vCardState.website || 'https://uchennaemeruche.com'                                                               }}
                                             </a>
                                         </div>
                                         <div>
                                             <div class="text-sm text-gray-500">Address</div>
                                             <div class="mt-2 border-b border-gray-200 pb-2 text-sm text-gray-900">
-                                                {{vCardState.address || 'Ukay Cresent, Off EUK, 112'}}</div>
+                                                {{                                                               vCardState.address || 'Ukay Cresent, Off EUK, 112'                                                               }}</div>
                                         </div>
                                         <div>
                                             <div class="text-sm text-gray-500">Socials</div>
@@ -174,14 +174,16 @@
 </template>
 <script setup lang="tsx">
 
-// import {QrCode} from '#components';
-
+import { stat } from 'fs';
 import QrCode from '~~/components/QrCode';
 
 
 const route = useRoute()
 const codeType = ref(route.query.codeType ? route.query.codeType : '')
 
+const {size, backgroundColor, dotsColor} = useQrCode()
+
+const qrcanvas = ref(null)
 
 
 
@@ -386,104 +388,70 @@ const qrCodeOpt = reactive({
     },
     value: undefined
 })
+
+const qrConfig = reactive({
+    show: false,
+    options: {
+        width: size.value,
+        height: size.value,
+        type: "svg",
+        data: "undefined",
+        image: "https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg",
+        dotsOptions: {
+            color: "#4267b2",
+            type: "rounded"
+        },
+        backgroundOptions: {
+            color: "#e9ebee",
+        },
+        imageOptions: {
+            crossOrigin: "anonymous",
+            margin: 20
+        }
+    }
+
+})
 const ContentBoard = () => {
     return (
         <div class="text-xl font-bold tracking-tight leading-tight text-white mt-16">
             <div class="w-full p-6 text-center my-auto h-full">
                 <p>Scanning the QR Code will redirect you to the website you want.</p>
             </div>
+                Data: {qrConfig.options.data}
+                Size: {qrConfig.options.width}
+                Size: {qrConfig.options.height}
             <div class="w-full relative flex items-center justify-center">
-                {qrCodeOpt.visible ? <QrCode value={qrCodeOpt.value} options={qrCodeOpt.options} v-show={qrCodeOpt.visible} /> : <div></div>}
-            </div>
-        </div>
-    )
-}
-
-const WebsiteQrCode = () => {
-    const state = reactive({
-        url: '',
-
-    })
-
-    return (
-        <div class="text-xl font-bold tracking-tight leading-tight text-gray-900 mb-6">
-            <div class="w-full p-6 space-y-4 md:space-y-6 sm:p-8">
-                <h1
-                    class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-blue-900">
-                    Create {codeType.value} Qrcode
-                </h1>
-                <Stepper>
-                    {({ currentStep, nextStep, previousStep }) => (
-                        <section>
-                            <StepperHeader>
-                                <StepperStep>
-                                    <div class="text-teal-600 text-sm">Website Information</div>
-                                </StepperStep>
-                                <StepperDivider />
-                                <StepperStep>
-                                    <div class="text-sm text-teal-600">Configuration</div>
-                                </StepperStep>
-                            </StepperHeader>
-                            <StepperItems>
-                                <StepperContent>
-                                    <form class="space-y-4 md:space-y-6 mt-16">
-                                        <div>
-                                            <label for="website"
-                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-blue-900">
-                                                Submit Website URL to create your QrCode</label>
-                                            <input type="text" name="url" id="website" v-model={state.url}
-                                                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-blue-100 dark:border-blue-100 dark:placeholder-gray-400 dark:text-blue-900 dark:focus:ring-blue-100 dark:focus:border-blue-500"
-                                                placeholder="www.mywebsite.com" required="true" />
-                                        </div>
-
-                                        <button onClick={(e) => { e.preventDefault(); nextStep(currentStep) }}
-                                            class="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
-                                            Next
-                                        </button>
-                                    </form>
-                                </StepperContent>
-                                <StepperContent>
-                                    <div class="space-y-4 md:space-y-6 mt-16">
-                                        <form class="space-y-4 md:space-y-6 mt-18">
-                                            <DashboardQrcodeSize />
-                                            <DashboardQrCodeColor />
-                                            <DashboardQrCodeFileUpload/>
-                                            <button onClick={(e) => { e.preventDefault(); previousStep(currentStep) }}
-                                                class="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
-                                                Previous
-                                            </button>
-                                            <button onClick={(e) => {e.preventDefault(); createQrCode(state.url)}}
-                                                class="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
-                                                Create Code
-                                            </button>
-                                        </form>
-                                    </div>
-                                </StepperContent>
-                            </StepperItems>
-                        </section>
-                    )}
-                </Stepper>
+                <client-only>
+                    <LazyQrC id="qr-code" options={qrConfig.options}  v-show={qrConfig.show}/>
+                </client-only>
+                {/* {qrCodeOpt.visible ? <QrCode value={qrCodeOpt.value} options={qrCodeOpt.options} v-show={qrCodeOpt.visible} /> : <div></div>} */}
             </div>
         </div>
     )
 }
 
 
-const { backgroundColor, transparentBackground, dotsColor, isGradientDots, markerBorderColor, markerCenterColor, } = useQrCode()
-const createQrCode = async(url) =>{
-    console.log("Background",backgroundColor.value)
-   qrCodeOpt.value = url
-   qrCodeOpt.visible = true
-   qrCodeOpt.options = {
-    color: {
-        dark:dotsColor.value,
-        // light:dotsColor.value
-    },
-    size: 1,
-    width: 300
+const updateQrConfig = (state) =>{
+   qrConfig.options.data = state
+   qrConfig.show = true
+}
 
-   }
-    
+
+
+const createQrCode = async (url) => {
+    console.log("Background", backgroundColor.value)
+    qrCodeOpt.value = url
+    qrCodeOpt.visible = true
+    qrCodeOpt.options = {
+        color: {
+            dark: dotsColor.value,
+            // light:dotsColor.value
+        },
+        size: 1,
+        width: 300
+
+    }
+
 }
 
 </script>
