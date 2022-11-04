@@ -5,6 +5,7 @@
 <script setup>
 import QRCodeStyling from 'qr-code-styling'
 
+
 const props = defineProps ({
     id:{type: String, required: true},
     data: { type: String, default: 'uchennaemeruche.com' },
@@ -14,10 +15,10 @@ const props = defineProps ({
 
   const {data, options, id } = toRefs(props)
 
+  const qrcode = ref(QRCodeStyling)
+
   watch(options, (newValue, oldValue) => {
-    console.log("someData changed!");
-    console.log("NEW !", newValue);
-    console.log("OLD !", oldValue);
+    qrcode.value.update(options.value)
   },
   {
     deep: true,
@@ -27,27 +28,15 @@ const props = defineProps ({
 
 const qrcanvas = ref(null)
 
-  // watch: {
-  //   $props: {
-  //     deep: true,
-  //     immediate: true,
-  //     handler() {
-  //       this.qrcode.update(this.props)
-  //     }
-  //   }
-  // },
-
   onMounted(() =>{
-    generate().append(qrcanvas.value)
+    qrcode.value = generate()
+    qrcode.value.append(qrcanvas.value)
   })
 
 
   const generate = () =>{
       if (process.client) {
-      
-        const qr = new QRCodeStyling(options.value)
-        console.log("Hi Thre", qr)
-        return qr
+       return new QRCodeStyling(options.value)
       }
     }
 

@@ -12,8 +12,7 @@
         </DisclosureButton>
         <DisclosurePanel class="px-4 text-sm text-gray-500">
         <div class="w-full p-4 bg-white rounded-lg border shadow-md sm:p-8 dark:bg-gray-800 dark:border-gray-700">
-            <!-- <h5 class="text-xl font-bold leading-none text-gray-900 dark:text-gray-200 mb-3">Select QrCode Size</h5> -->
-                <Listbox v-model="selectedSize" @update:modelValue="({value}) => $emit('update', {key: 'width', value})">
+                <Listbox v-model="selectedSize" @update:modelValue="({value}) => $emit('update', value)">
                     <div class="relative mt-1">
                         <ListboxButton
                             class="relative w-full cursor-default rounded-lg bg-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">
@@ -62,8 +61,6 @@
 <script setup lang="ts">
 import { Disclosure, DisclosureButton, DisclosurePanel,  Listbox, ListboxButton, ListboxOptions, ListboxOption, } from '@headlessui/vue'
 
-const { size, setSize } = useQrCode()
-
 const sizes = [
     { name: '100x100', value: '100' },
     { name: '200x200', value: '200' },
@@ -77,6 +74,7 @@ const sizes = [
 const selectedSize = ref(sizes[0])
 
 const emit = defineEmits(['update', 'create'])
+
 
 </script>
 <style lang="">

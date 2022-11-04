@@ -2,6 +2,7 @@
     <div class="flex flex-col w-full md:flex-row md:mx-12 lg:mx-0">
         <div class="column-3 w-full md:w-7/12 h-full mt-4 p-3 border-2 border-dashed md:mx-2 my-2 rounded-md">
             <div class="mx-auto w-full">
+                <p class="text-red-200">Check:{{ qrConfig.options.height }} - {{ qrConfig.options.width }}</p>
                 <DashboardQrCodeCreator :qr-type="codeType.toString()" @update="updateQrConfig" />
             </div>
         </div>
@@ -39,8 +40,8 @@
 
                                 </div>
                                 <div class="text-sm text-gray-500 text-center mt-4">
-                                    <p class="text-white text-lg">{{                                                               vCardState.fullname || 'John Doe'                                                               }}</p>
-                                    <p class="text-white">{{                                                               vCardState.role || 'Software Engineer'                                                               }}</p>
+                                    <p class="text-white text-lg">{{ vCardState.fullname || 'John Doe' }}</p>
+                                    <p class="text-white">{{ vCardState.role || 'Software Engineer' }}</p>
 
                                 </div>
                             </div>
@@ -105,13 +106,13 @@
                                             <div class="text-sm text-gray-500">Website</div>
                                             <a href="https://uchennaemeruche.com"
                                                 class="mt-2 border-b border-gray-200 pb-2 text-sm text-gray-900">
-                                                {{                                                               vCardState.website || 'https://uchennaemeruche.com'                                                               }}
+                                                {{ vCardState.website || 'https://uchennaemeruche.com' }}
                                             </a>
                                         </div>
                                         <div>
                                             <div class="text-sm text-gray-500">Address</div>
                                             <div class="mt-2 border-b border-gray-200 pb-2 text-sm text-gray-900">
-                                                {{                                                               vCardState.address || 'Ukay Cresent, Off EUK, 112'                                                               }}</div>
+                                                {{ vCardState.address || 'Ukay Cresent, Off EUK, 112' }}</div>
                                         </div>
                                         <div>
                                             <div class="text-sm text-gray-500">Socials</div>
@@ -154,6 +155,7 @@
                             </div>
                         </div>
                         <div class="w-full">
+                            <p class="text-red-200">Check:{{ qrConfig.options.height }} - {{ qrConfig.options.width }}</p>
                             <ContentBoard />
                         </div>
                     </div>
@@ -173,15 +175,12 @@
     </div>
 </template>
 <script setup lang="tsx">
-
-import { stat } from 'fs';
 import QrCode from '~~/components/QrCode';
-
 
 const route = useRoute()
 const codeType = ref(route.query.codeType ? route.query.codeType : '')
 
-const {size, backgroundColor, dotsColor} = useQrCode()
+const { backgroundColor, dotsColor } = useQrCode()
 
 const qrcanvas = ref(null)
 
@@ -369,18 +368,6 @@ const steps = [
 
 
 
-
-const DisplayPhoneContent = () => {
-    const state = reactive({
-        displayContent: null
-    })
-    return (
-        <div class="text-white text-center">
-            <p>Hi There: {state.displayContent}</p>
-        </div>
-    )
-}
-
 const qrCodeOpt = reactive({
     visible: false,
     options: {
@@ -392,8 +379,8 @@ const qrCodeOpt = reactive({
 const qrConfig = reactive({
     show: false,
     options: {
-        width: size.value,
-        height: size.value,
+        width: 150,
+        height: 150,
         type: "svg",
         data: "undefined",
         image: "https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg",
@@ -403,6 +390,24 @@ const qrConfig = reactive({
         },
         backgroundOptions: {
             color: "#e9ebee",
+        },
+        cornersSquareOptions: {
+            color: '#35495E',
+            type: 'extra-rounded',
+            // gradient: {
+            //   type: 'linear', // 'radial'
+            //   rotation: 180,
+            //   colorStops: [{ offset: 0, color: '#25456e' }, { offset: 1, color: '#4267b2' }]
+            // },
+        },
+        cornersDotOptions: {
+            color: '#35495E',
+            type: 'dot',
+            // gradient: {
+            //   type: 'linear', // 'radial'
+            //   rotation: 180,
+            //   colorStops: [{ offset: 0, color: '#00266e' }, { offset: 1, color: '#4060b3' }]
+            // },
         },
         imageOptions: {
             crossOrigin: "anonymous",
@@ -417,12 +422,9 @@ const ContentBoard = () => {
             <div class="w-full p-6 text-center my-auto h-full">
                 <p>Scanning the QR Code will redirect you to the website you want.</p>
             </div>
-                Data: {qrConfig.options.data}
-                Size: {qrConfig.options.width}
-                Size: {qrConfig.options.height}
             <div class="w-full relative flex items-center justify-center">
                 <client-only>
-                    <LazyQrC id="qr-code" options={qrConfig.options}  v-show={qrConfig.show}/>
+                    <LazyQrC id="qr-code" options={qrConfig.options} v-show={qrConfig.show} />
                 </client-only>
                 {/* {qrCodeOpt.visible ? <QrCode value={qrCodeOpt.value} options={qrCodeOpt.options} v-show={qrCodeOpt.visible} /> : <div></div>} */}
             </div>
@@ -431,9 +433,13 @@ const ContentBoard = () => {
 }
 
 
-const updateQrConfig = (state) =>{
-   qrConfig.options.data = state
-   qrConfig.show = true
+const updateQrConfig = (configs = [{ key: '', value: '' }]) => {
+    configs.map(({ key, value }) => {
+        qrConfig.options[key] = value
+    })
+    // qrConfig.options[key] = value
+    //    qrConfig.options.data = state
+    qrConfig.show = true
 }
 
 

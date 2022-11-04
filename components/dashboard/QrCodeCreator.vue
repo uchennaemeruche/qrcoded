@@ -28,7 +28,7 @@
                                                 placeholder="www.mywebsite.com" required="true" />
                                         </div>
 
-                                        <button @click.prevent="$emit('update', state.url); nextStep(currentStep)"
+                                        <button @click.prevent="$emit('update', [{key: 'data', value: state.url}]); nextStep(currentStep)"
                                             class="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
                                             Next
                                         </button>
@@ -37,7 +37,7 @@
                                 <StepperContent>
                                     <div class="space-y-4 md:space-y-6 mt-16">
                                         <form class="space-y-4 md:space-y-6 mt-18">
-                                            <DashboardQrcodeSize />
+                                            <DashboardQrcodeSize  @update="updateSize"/>
                                             <DashboardQrCodeColor />
                                             <DashboardQrCodeFileUpload/>
                                             <button @click=" previousStep(currentStep)"
@@ -72,10 +72,11 @@ const state = reactive({
 
 })
 
-const emitNext = () =>{
-    console.log("HEllo There")
-    // emit('update', state.url)
-    // next(currentStep)
-    
+const {setSize} = useQrCode()
+
+const updateSize = (size) =>{
+    console.log("UPdating", size)
+    emit('update', [{key: 'width', value: size}, {key: 'height', value: size}])
 }
+
 </script>

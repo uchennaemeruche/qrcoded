@@ -16,6 +16,10 @@
                 <ul role="list" class="divide-y divide-gray-200 dark:divide-gray-700">
                     <li class="py-3 sm:py-4">
                         <h6 class="text-xl font-normal leading-none text-gray-900 dark:text-white mb-2">Background color</h6>
+                        <div class="flex items-center space-x-4 w-full">
+                            {{bgColorType}}
+                            <DashboardColorModeSwitcher v-model="bgColorType"/>
+                        </div>
                         <div class="flex items-center space-x-4 h-[35px] w-full" v-show="!transparentBackground">
                             <div class="w-4/5 h-full">
                                 <input class="color-holder" v-model="backgroundColor">
@@ -94,6 +98,7 @@ import { Switch, Disclosure, DisclosureButton, DisclosurePanel  } from '@headles
 
 const { setBackgroundColor, setDotsColor, setMarkerBorderColor, backgroundColor, transparentBackground, dotsColor, isGradientDots, markerBorderColor, markerCenterColor} = useQrCode()
 
+const bgColorType = ref('single')
 
 
 </script>
