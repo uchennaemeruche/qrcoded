@@ -15,29 +15,26 @@
             <div class="flow-root">
                 <ul role="list" class="divide-y divide-gray-200 dark:divide-gray-700">
                     <li class="py-3 sm:py-4">
-                        <h6 class="text-xl font-normal leading-none text-gray-900 dark:text-white mb-2">Background color</h6>
-                        <div class="flex items-center space-x-4 w-full">
-                            {{bgColorType}}
-                            <DashboardColorModeSwitcher v-model="bgColorType"/>
-                        </div>
-                        <div class="flex items-center space-x-4 h-[35px] w-full" v-show="!transparentBackground">
-                            <div class="w-4/5 h-full">
-                                <input class="color-holder" v-model="backgroundColor">
+                        BG: {{background.color}}
+                        <h6 class="text-xl font-normal leading-none text-gray-900 dark:text-white mb-2">{{isGradient ? 'Gradient' : 'Single' }} Background color</h6>
+                        <div class="w-full" v-show="!transparentBackground">
+                            <div class="w-full" v-if="!isGradient">
+                                <DashboardColorInput v-model="backgroundColor" @input="(value) => setBackgroundColor(value)"/>
                             </div>
-                            <div class="h-full w-1/5">
-                                <input type="color" class="h-full w-full" v-model="backgroundColor" @change="setBackgroundColor(backgroundColor)"
-                                style="border: 0.1rem solid rgb(227, 236, 242); background: rgb(255, 255, 255);">
+                            <div class="w-full" v-else>
+                                {{background.gradient.type}}
+                                Gra:{{background.gradient.colorStops[0].color}}
+                                <DashboardColorRadioButton v-model="background.gradient.type" :options="['linear', 'radial']" @input="(value) => updateGradientType(value)"/>
+                                <div class="w-full flex mx-2 space-x-2">
+                                    <DashboardColorInput v-model="background.gradient.colorStops[0].color" @input="(value) => updateColorStops({offset: 0, color: value})"/>
+                                    <DashboardColorInput v-model="background.gradient.colorStops[1].color" @input="(value) => updateColorStops({offset: 1, color: value})"/>
+                                </div>
                             </div>
+                            <DashboardColorSwitcher title="Gradient Background" :item="isGradient" @input="(value) => isGradient = value" />
                         </div>
-                        <a class="inline-flex space-x-4 justify-center items-center py-2 text-gray-500 rounded cursor-pointer ">
-                            <Switch v-model="transparentBackground" :class="transparentBackground ? 'bg-blue-600' : 'bg-gray-300'"
-                                class="relative inline-flex h-5 w-11 items-center rounded-full">
-                                <span class="sr-only">Transparent background</span>
-                                <span :class="transparentBackground ? 'translate-x-6' : 'translate-x-1'"
-                                    class="inline-block h-4 w-4 transform rounded-full bg-white transition" />
-                            </Switch>
-                            <h6 class="text-lg font-normal text-gray-900 dark:text-gray-300">Transparent background</h6>
-                         </a>
+                       
+                        <DashboardColorSwitcher title="Transparent Background" :item="transparentBackground" @input="(value) => transparentBackground = value"/>
+                        
                     </li>
                     <li class="py-3 sm:py-4">
                         <h6 class="text-xl font-normal leading-none text-gray-900 dark:text-white mb-2">Dots color</h6>
@@ -96,9 +93,18 @@
 <script setup>
 import { Switch, Disclosure, DisclosureButton, DisclosurePanel  } from '@headlessui/vue'
 
-const { setBackgroundColor, setDotsColor, setMarkerBorderColor, backgroundColor, transparentBackground, dotsColor, isGradientDots, markerBorderColor, markerCenterColor} = useQrCode()
+const { setBackgroundColor, background, updateColorStops, updateGradientType, setDotsColor, setMarkerBorderColor, backgroundColor, dotsColor, isGradientDots, markerBorderColor, markerCenterColor} = useQrCode()
 
-const bgColorType = ref('single')
+
+const bgColorType = ref('')
+const item = ref(false)
+const transparentBackground = ref(false)
+const isGradient = ref(false)
+
+
+const updateBgColorType = (value) =>{
+    item.value = value
+}
 
 
 </script>
