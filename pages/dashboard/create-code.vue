@@ -156,7 +156,16 @@
                         </div>
                         <div class="w-full">
                             <p class="text-red-200">Check:{{ qrConfig.options.height }} - {{ qrConfig.options.width }}</p>
-                            <ContentBoard />
+                            <div class="text-xl font-bold tracking-tight leading-tight text-white mt-16">
+                                <div class="w-full p-6 text-center my-auto h-full">
+                                    <p>Scanning the QR Code will redirect you to the website you want.</p>
+                                </div>
+                                <div class="w-full relative flex items-center justify-center">
+                                    <client-only>
+                                        <LazyQrC id="qr-code" :options=qrConfig.options v-show="qrConfig.show" />
+                                    </client-only>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -416,26 +425,32 @@ const qrConfig = reactive({
     }
 
 })
-const ContentBoard = () => {
-    return (
-        <div class="text-xl font-bold tracking-tight leading-tight text-white mt-16">
-            <div class="w-full p-6 text-center my-auto h-full">
-                <p>Scanning the QR Code will redirect you to the website you want.</p>
-            </div>
-            <div class="w-full relative flex items-center justify-center">
-                <client-only>
-                    <LazyQrC id="qr-code" options={qrConfig.options} v-show={qrConfig.show} />
-                </client-only>
-                {/* {qrCodeOpt.visible ? <QrCode value={qrCodeOpt.value} options={qrCodeOpt.options} v-show={qrCodeOpt.visible} /> : <div></div>} */}
-            </div>
-        </div>
-    )
-}
+// const ContentBoard = () => {
+//     return (
+//         <div class="text-xl font-bold tracking-tight leading-tight text-white mt-16">
+//             <div class="w-full p-6 text-center my-auto h-full">
+//                 <p>Scanning the QR Code will redirect you to the website you want.</p>
+//             </div>
+//             <div class="w-full relative flex items-center justify-center">
+//                 <client-only>
+//                     <LazyQrC id="qr-code" options={qrConfig.options} v-show={qrConfig.show} />
+//                 </client-only>
+//                 {/* {qrCodeOpt.visible ? <QrCode value={qrCodeOpt.value} options={qrCodeOpt.options} v-show={qrCodeOpt.visible} /> : <div></div>} */}
+//             </div>
+//         </div>
+//     )
+// }
 
 
-const updateQrConfig = (configs = [{ key: '', value: '' }]) => {
+const updateQrConfig = (configs = [{ key: '', value:{} }]) => {
+    console.log(configs)
     configs.map(({ key, value }) => {
-        qrConfig.options[key] = value
+        console.log("KEY:", key)
+        console.log("VALUE:", value)
+
+        const currentValue =  qrConfig.options[key]
+        console.log("Merged:", {...currentValue, ...value})
+        qrConfig.options[key] = {...currentValue, ...value}
     })
     // qrConfig.options[key] = value
     //    qrConfig.options.data = state

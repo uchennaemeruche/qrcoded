@@ -54,7 +54,7 @@ const bg:ColorConfig ={
 const useQrCode = () =>{
 
     const background = ref<ColorConfig>({
-        color: '#FFFFFF',
+        color: '#e9ebee',
         gradient:{
             type: 'linear',
             colorStops:[{offset: 0, color:''}, {offset:1, color:''}]
@@ -69,10 +69,12 @@ const useQrCode = () =>{
     const updateColorStops = (newValue) =>{
         background.value.gradient.colorStops[newValue.offset].offset  = newValue.offset
         background.value.gradient.colorStops[newValue.offset].color  = newValue.color
+        // console.log("New bk after",background.value)
     }
 
     const updateGradientType = (newValue) =>{
         background.value.gradient.type = newValue
+        // console.log("New bk",background.value)
     }
 
     const updateBackground = (newValue) =>{
